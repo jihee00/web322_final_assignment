@@ -1,0 +1,36 @@
+<div class="main">
+
+<!-- Will only show if the errors array exists-->
+{{#each errors}}
+    <div class="error" >{{this}}</div>
+{{/each}}
+
+<!--This will only show if the successMessage was injected into the view -->
+<div>{{successMessage}}</div>
+
+<section>
+
+    <form action="/login" method="POST">
+
+        <label for="custName">Your Name</label>
+        <input type="text" id="custName" name="custName"> <br>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email"> <br>
+
+        <label for="psw">PassWord</label>
+        <input type="password" placeholder="Enter Password" name="psw"><br><br>
+        <p>Passwords must consist of at least 6 characters.</p>
+
+        <label for="psw">PassWord again</label>
+        <input type="password" placeholder="Enter Password" name="psw"><br><br>
+
+        <input type="submit" value="Create your Amazon account">
+        <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
+
+    </form>
+
+    <p>Already have an account? <a href="/login">Sign in</a></p>
+
+</section>
+</div>

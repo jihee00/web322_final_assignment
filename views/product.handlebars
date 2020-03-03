@@ -1,0 +1,17 @@
+<div class="main">
+<section>
+  <div class="container">
+    {{#each products}}
+              <div class="col3_list">
+                    <ul>
+                      <li><a target="_blank" href="#">
+                          <img src="{{this.image}}" alt="{{this.title}}"></a></li>
+                      <li class="price_d">{{this.price}}</li>
+                      <li class="title_d">{{this.title}}</li>
+                      <li class="category_d">{{this.category}}</li>
+                    </ul>
+              </div>
+    {{/each}}
+  </div>
+</section>
+</div>
