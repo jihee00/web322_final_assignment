@@ -1,17 +1,19 @@
-<div class="main">
-<section>
-  <div class="container">
-    {{#each products}}
-              <div class="col3_list">
-                    <ul>
-                      <li><a target="_blank" href="#">
-                          <img src="{{this.image}}" alt="{{this.title}}"></a></li>
-                      <li class="price_d">{{this.price}}</li>
-                      <li class="title_d">{{this.title}}</li>
-                      <li class="category_d">{{this.category}}</li>
-                    </ul>
-              </div>
-    {{/each}}
-  </div>
-</section>
+<div class="j-container j-padding-32" id="product">
+  <h3 class="j-border-bottom j-border-light-grey j-padding-16">Product</h3>
 </div>
+  <div class="j-row-padding">
+          {{#each products}}
+                <div class="j-col l4 m6 j-margin-bottom">
+                  <div class="j-display-container">
+                      <div class="j-display-topleft j-black j-padding">{{this.category}}</div>
+                        <a target="_blank" href="#"><img src="{{this.image}}" alt="{{this.title}}" style="width:93%"></a>
+                        <div>{{this.title}}</div>
+                        <div>{{this.price}}</div>
+                    </div>
+                </div>
+          {{/each}}
+  </div>
+    
+
+
+

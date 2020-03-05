@@ -9,23 +9,31 @@
 </head>
 <body>
     <header>
-            <div class ="logo"><a href="/"><img src="/img/amazon-transparent.png"></a></div>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/register">Customer Registration</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/product">Products Page</a></li>
-                </ul>
+            <!-- Navbar -->
+            <nav class="j-top">
+                <div class="j-bar j-navy j-wide j-padding">
+                    <div class="j-left">
+                        <a href="/" class="j-bar-item j-button"><img src="/img/amazon-transparent.png" alt="amazon" width="13%"></a>
+                    </div>
+                    <!-- Float links to the right -->
+                    <div class="j-right">
+                        <a href="/" class="j-bar-item j-button">Home</a>
+                        <a href="/register" class="j-bar-item j-button">Registration</a>
+                        <a href="/login" class="j-bar-item j-button">Login</a>
+                        <a href="/product" class="j-bar-item j-button">Products</a>
+                    </div>
+                </div>
             </nav>
     </header>
-    <main>
-        <h1>{{headingInfo}}</h1>
-        <div>
-            {{{body}}}
-        </div>
-    </main>
-    <footer>
+    <div class="j-content j-padding" style="max-width:1564px">
+        <main>
+            <h1>{{headingInfo}}</h1>
+            <div>
+                {{{body}}}
+            </div>
+        </main>
+    </div>
+    <footer class="j-center j-navy j-padding-16">
         <p>
             © 2020, Jihee Kim 
         </p>

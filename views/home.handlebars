@@ -1,43 +1,29 @@
-<div class="main">
-    <div class="banner">
-        <div>
-    		<a href="/product"><img src="/img/banner1.jpg"></a>
+<div class="j-container j-padding-32" id="home">
+        <div class="j-row-padding">
+    		<a href="/product"><img src="/img/banner.jpg" style="width:100%"></a>
         </div>
-    </div>
-	<div class="sub_section">
-		<div class="section">
-			<h1 class="section_title">CATEGORY</h1>
-		</div>
-		<div class="category">
-			<section>
-				{{#each categories}}
-					<div class="container2">
-						<div class="category_list">
-								<a target="_blank" href="#">
-								<img src="{{this.image}}" alt="{{this.title}}">
-								</a>
+			<h3 class="j-border-bottom j-border-light-grey j-padding-16">CATEGORY</h3>
+				<section class="j-row-padding">
+						{{#each categories}}
+							<div class="j-col l3 m6 j-margin-bottom">
+										<div class="j-display-container">
+												<div class="j-display-topleft j-dark-grey j-padding">{{this.category}}</div>
+												<a target="_blank" href="#"><img src="{{this.image}}" alt="{{this.title}}" style="width:98%"></a>
+											</div>
+									</div>
+						{{/each}}
+				</section>
+			<h3 class="j-border-bottom j-border-light-grey j-padding-16">BEST SELLER</h3>
+				<section class="j-row-padding">
+					{{#each bestsellers}}
+						<div class="j-col l3 m6 j-margin-bottom">
+									<div class="j-display-container">
+											<div class="j-display-topleft j-black j-padding">{{this.category}}</div>
+											<a target="_blank" href="#"><img src="{{this.image}}" alt="{{this.title}}" style="width:95%"></a>
+											<div>{{this.title}}</div>
+											<div>{{this.price}}</div>
+										</div>
 						</div>
-					</div>
-				{{/each}}
-			</section>
-		</div>
-	</div>
-	<div class="sub_section">
-		<div class="bestseller">
-			<section>
-				{{#each bestsellers}}
-					<div class="container">
-						<div class="col3_list">
-								<a target="_blank" href="#">
-								<img src="{{this.image}}" alt="{{this.title}}">
-								</a>
-								<div class="price_d">{{this.price}}</div>
-								<div class="title_d">{{this.title}}</div>
-								<div class="category_d">{{this.category}}</div>
-						</div>
-					</div>
-				{{/each}}
-			</section>
-		</div>
-	</div>
+					{{/each}}
+				</section>
 </div>

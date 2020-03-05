@@ -1,30 +1,27 @@
-<div class="main">
-    
-<!-- Will only show if the errors array exists-->
-{{#each errors}}
-    <div class="error" >{{this}}</div>
-{{/each}}
+<div class="j-container j-padding-32" id="login">
+    <h3 class="j-border-bottom j-border-light-grey j-padding-16">Sign-in</h3>
+        <section>
+            <form action="/login" method="POST">
 
-<!--This will only show if the successMessage was injected into the view -->
-<div>{{successMessage}}</div>
-<div class="container">
-<section>
-    <form action="/login" method="POST">
+                <label for="email">Email</label>
+                <input class="j-input j-border" type="email" id="email" name="email"> <br>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required=""> <br>
+                <label for="psw">PassWord</label>
+                <input class="j-input j-section j-border" type="password" placeholder="At least 6 characters" name="psw"><br><br>
+                <p>Passwords must consist of at least 6 characters.</p>
 
-        <label for="psw">PassWord</label>
-        <input type="password" placeholder="At least 6 characters" name="psw" required=""><br><br>
-        <p>Passwords must consist of at least 6 characters.</p>
-
-        <input type="submit" value="Login">
-
-    </form>
-
-    <form action="/register" method="get" target="_blank">
-         <input type="submit" value="Create your Amazon account">
-    </form>
-</section>
-</div>
+                <input class="j-input j-section j-border" type="submit" value="Login">
+            </form>
+            <form action="/register" method="get" target="_blank">
+                <input class="j-input j-section j-border" type="submit" value="Create your Amazon account">
+            </form>
+        </section>
+    <!-- Will only show if the errors array exists-->
+    <div class="j-error">
+    {{#each errors}}
+        <div>{{this}}</div>
+    {{/each}}
+    <!--This will only show if the successMessage was injected into the view -->
+    <div>{{successMessage}}</div>
+    </div>
 </div>
