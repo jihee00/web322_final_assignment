@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const productModel = require("./model/product");
 const categoryModel = require("./model/category");
 const bestsellerModel = require("./model/bestseller");
+require('dotenv').config({path:"./config/keys.env"});
 
 //creation of app object
 const app = express();
@@ -169,13 +170,39 @@ app.post("/register",(req,res)=>{
         //If the user enters all the data and submit the form
         else
         {
-                const {custName,Email,psw,psw2} = req.body;
-                res.render("login",{
-                        title : "Login Page",
-                        successMessage :`Thank you ${custName},
-                        we received your information`
+                const {firstName,Email,psw} = req.body;
+                // using Twilio SendGrid's v3 Node.js Library
+                // https://github.com/sendgrid/sendgrid-nodejs
+                const sgMail = require('@sendgrid/mail');
+                sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+                const msg = {
+                to: `warmgrey32@gmail.com`,
+                from: `${Email}`,
+                subject: 'Registration Form Submit',
+                html: 
+                `
+                User's Name ${firstName} <br>
+                User's Email Address ${Email} <br>
+                User's password ${psw} <br>
+                `,
+                };
+                //Asynchornous operation (we don't know how long this will take to execute)
+                sgMail.send(msg)
+                .then(()=>{
+                res.render("home", {
+                        title : "Home",
+                        headingInfo:"",
+                        categories : categoryModel.getAllCategories(),
+                        bestsellers : bestsellerModel.getAllBestSellers(),
+                        emailLog : req.body.emailLog,
+                        pswLog : req.body.pswLog
+                })
+                })
+                .catch(err=>{
+                console.log(`Error ${err}`);
                 });
         }
+
 });
 
 const PORT= process.env.PORT||3000;
