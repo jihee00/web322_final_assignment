@@ -1,21 +1,45 @@
 <div class="j-container j-padding-32" id="register">
     <h3 class="j-border-bottom j-border-light-grey j-padding-16">Create account</h3>
+    <!--This will only show if the successMessage was injected into the view -->
+    <div>{{successMessage}}</div>
 <section>
-
     <form action="/login" method="POST">
 
-        <label for="custName">Your Name</label>
-        <input class="j-input j-border" type="text" id="custName" name="custName"> <br>
+        <label for="firstName">Your first Name</label>
+        <input class="j-input j-border" type="text" id="firstName" name="firstName" value="{{firstname}}"> <br>
+        <!-- Will only show if the errors array exists-->
+                    {{#each errors1}}
+                    <div>{{this}}</div>
+                    {{/each}}
 
-        <label for="email">Email</label>
-        <input class="j-input j-section j-border" type="email" id="email" name="email"> <br>
+        <label for="lastName">Your last Name</label>
+        <input class="j-input j-border" type="text" id="lastName" name="lastName" value="{{lastname}}"> <br>
+        <!-- Will only show if the errors array exists-->
+                    {{#each errors2}}
+                    <div>{{this}}</div>
+                    {{/each}}
 
-        <label for="psw">PassWord</label>
-        <input class="j-input j-section j-border" type="password" placeholder="Enter Password" name="psw"><br><br>
+        <label for="Email">Email</label>
+        <input class="j-input j-section j-border" type="email" id="Email" name="Email" value="{{Email}}"> <br>
+        <!-- Will only show if the errors array exists-->
+                    {{#each errors3}}
+                    <div>{{this}}</div>
+                    {{/each}}
+
+        <label for="psw">Password</label>
+        <input class="j-input j-section j-border" type="password" placeholder="Enter Password" name="psw" value="{{psw}}"><br>
+        <!-- Will only show if the errors array exists-->
+                    {{#each errors4}}
+                    <div>{{this}}</div>
+                    {{/each}}
         <p>Passwords must consist of at least 6 characters.</p>
 
-        <label for="psw">PassWord again</label>
-        <input class="j-input j-section j-border" type="password" placeholder="Enter Password" name="psw"><br><br>
+        <label for="psw2">Password again</label>
+        <input class="j-input j-section j-border" type="password" placeholder="Enter Password" name="psw2" value="{{psw2}}"><br>
+        <!-- Will only show if the errors array exists-->
+                    {{#each errors5}}
+                    <div>{{this}}</div>
+                    {{/each}}
 
         <input class="j-input j-section j-border" type="submit" value="Create your Amazon account">
         <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
@@ -23,12 +47,4 @@
     </form>
     <p>Already have an account? <a href="/login">Sign in</a></p>
 </section>
-
-<!-- Will only show if the errors array exists-->
-{{#each errors}}
-    <div class="j-error" >{{this}}</div>
-{{/each}}
-
-<!--This will only show if the successMessage was injected into the view -->
-<div>{{successMessage}}</div>
 </div>

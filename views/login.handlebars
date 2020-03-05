@@ -1,27 +1,28 @@
 <div class="j-container j-padding-32" id="login">
     <h3 class="j-border-bottom j-border-light-grey j-padding-16">Sign-in</h3>
+    <!--This will only show if the successMessage was injected into the view -->
+    <div>{{successMessage}}</div>
         <section>
             <form action="/login" method="POST">
 
-                <label for="email">Email</label>
-                <input class="j-input j-border" type="email" id="email" name="email"> <br>
+                <label for="emailLog">Email</label>
+                <input class="j-input j-border" type="email" id="emailLog" name="emailLog" value="{{emailLog}}"> <br>
+                <!-- Will only show if the errors array exists-->
+                    {{#each errorsL1}}
+                    <div>{{this}}</div>
+                    {{/each}}
 
-                <label for="psw">PassWord</label>
-                <input class="j-input j-section j-border" type="password" placeholder="At least 6 characters" name="psw"><br><br>
+                <label for="pswLog">PassWord</label>
+                <input class="j-input j-section j-border" type="password" placeholder="At least 6 characters" name="pswLog" value="{{pswLog}}"><br><br>
                 <p>Passwords must consist of at least 6 characters.</p>
-
+                <!-- Will only show if the errors array exists-->
+                    {{#each errorsL2}}
+                    <div>{{this}}</div>
+                    {{/each}}
                 <input class="j-input j-section j-border" type="submit" value="Login">
             </form>
             <form action="/register" method="get" target="_blank">
                 <input class="j-input j-section j-border" type="submit" value="Create your Amazon account">
             </form>
         </section>
-    <!-- Will only show if the errors array exists-->
-    <div class="j-error">
-    {{#each errors}}
-        <div>{{this}}</div>
-    {{/each}}
-    <!--This will only show if the successMessage was injected into the view -->
-    <div>{{successMessage}}</div>
-    </div>
 </div>

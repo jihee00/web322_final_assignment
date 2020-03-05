@@ -39,60 +39,6 @@ app.get("/product",(req,res)=>{
         })
 });
 
-app.get("/register",(req,res)=>{
-        
-        res.render("register",{
-                title : "Customer Registration",
-                headingInfo:"Create account"
-        })
-});
-
-//Handle the post data
-app.post("/register",(req,res)=>{
-
-        const errorMessages = [];
-
-        //validation
-        if(req.body.custName=="")
-        {
-                errorMessages.push("You must enter your name");
-        }
-
-        if(req.body.email=="")
-        {
-                errorMessages.push("You must enter an email address");
-        }
-
-        if(req.body.psw=="")
-        {
-                errorMessages.push("You must enter a password");
-        }
-
-        if(req.body.psw=="")
-        {
-                errorMessages.push("You must enter a password");
-        }
-
-        //If the user does not enter all the information
-        if(errorMessages.length >0 )
-        {
-                res.render("register",{
-                title : "Customer Registration",
-                errors : errorMessages
-                });
-        }
-
-        //If the user enters all the data and submit the form
-        else
-        {
-                res.render("login",{
-                        title : "Login Page",
-                        successMessage :`Thank you ${req.body.custName},
-                        we received your information`
-                });
-        }
-});
-
 app.get("/login",(req,res)=>{
         
         res.render("login",{
@@ -104,28 +50,132 @@ app.get("/login",(req,res)=>{
 //Handle the post data
 app.post("/login",(req,res)=>{
 
-        const errorMessages = [];
+        const errorMessagesL1 = [];
+        const errorMessagesL2 = [];
 
         //validation
-        if(req.body.email=="")
+        if(req.body.emailLog=="")
         {
-                errorMessages.push("You must enter an email address");
+                errorMessagesL1.push("You must enter an email address.");
+        }
+
+        if(req.body.pswLog=="")
+        {
+                errorMessagesL2.push("You must enter a password.");
+        }
+
+        //If the user does not enter all the information
+        if(errorMessagesL1.length >0 || errorMessagesL2.length >0 )
+        {
+                const {emailLog,pswLog} = req.body;
+                res.render("login",{
+                        title : "Login Page",
+                        errorsL1 : errorMessagesL1,
+                        errorsL2 : errorMessagesL2,
+                        emailLog : `${emailLog}`,
+                        pswLog : `${pswLog}`
+                });
+        }
+
+        else 
+        {
+                const {emailLog,pswLog} = req.body;
+                res.render("home",{
+                        title : "Home",
+                        headingInfo:"",
+                        categories : categoryModel.getAllCategories(),
+                        bestsellers : bestsellerModel.getAllBestSellers(),
+                        emailLog : `${emailLog}`,
+                        pswLog : `${pswLog}`
+                });
+        }
+        
+
+});
+
+app.get("/register",(req,res)=>{
+        
+        res.render("register",{
+                title : "Customer Registration",
+                headingInfo:"Create account"
+        })
+});
+
+//Handle the post data
+app.post("/register",(req,res)=>{
+
+        const errorMessages1 = [];
+        const errorMessages2 = [];
+        const errorMessages3 = [];
+        const errorMessages4 = [];
+        const errorMessages5 = [];
+        const charac=/^[a-zA-Z0-9]{6-12}$/;
+
+        //validation
+        if(req.body.firstName=="")
+        {
+                errorMessages1.push("You must enter your first name.");
+        }
+
+        if(req.body.lastName=="")
+        {
+                errorMessages2.push("You must enter your last name.");
+        }
+
+        if(req.body.Email=="")
+        {
+                errorMessages3.push("You must enter an email address.");
         }
 
         if(req.body.psw=="")
         {
-                errorMessages.push("You must enter a password");
+                errorMessages4.push("You must enter a password.");
         }
 
-        //If the user does not enter all the information
-        if(errorMessages.length >0 )
+        else if(req.body.psw.length < 6 || req.body.psw.length > 12)
         {
-                res.render("login",{
-                        title : "Login Page",
-                        errors : errorMessages
+                errorMessages4.push("You must enter 6 to 12 characters.");
+        }
+
+        else if(!charac.test(req.body.psw))
+        {
+                errorMessages4.push("You must enter letters or numbers.");
+        }
+        
+        if(req.body.psw !== req.body.psw2)
+        {
+                errorMessages5.push("The password strings must match!");
+        }
+
+
+        //If the user does not enter all the information
+        if(errorMessages1.length >0 || errorMessages2.length >0 || errorMessages3.length >0|| errorMessages4.length >0|| errorMessages5.length >0)
+        {
+                const {custName,Email,psw,psw2} = req.body;
+                res.render("register",{
+                title : "Customer Registration",
+                errors1: errorMessages1,
+                errors2: errorMessages2,
+                errors3: errorMessages3,
+                errors4: errorMessages4,
+                errors5: errorMessages5,
+                custName : `${custName}`,
+                Email : `${Email}`,
+                psw : `${psw}`,
+                psw2 : `${psw2}`
                 });
         }
 
+        //If the user enters all the data and submit the form
+        else
+        {
+                const {custName,Email,psw,psw2} = req.body;
+                res.render("login",{
+                        title : "Login Page",
+                        successMessage :`Thank you ${custName},
+                        we received your information`
+                });
+        }
 });
 
 const PORT= process.env.PORT||3000;
