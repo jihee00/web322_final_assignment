@@ -1,6 +1,7 @@
 const products =
 {
     fakeDB:[],
+
     init()
     {
         this.fakeDB.push({image:`/img/p1.jpg`, title:`LIGHTING`, price:`CDN$ 19.99`, category:`smart home`, bestseller:false});
@@ -15,5 +16,6 @@ const products =
         return this.fakeDB;
     },
 }
+
 products.init();
 module.exports = products;
