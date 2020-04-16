@@ -19,12 +19,12 @@ fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em;vertic
 legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}
 textarea{overflow:auto}
 form {background: #fff;padding: 8%; max-width:50%; margin: 5% 30%;box-shadow: 0 0 0.1em #222; justify-content: center}
-h1{font-size:36px}
-h2{font-size:30px}
-h3{font-size:24px}
-h4{font-size:20px}
-h5{font-size:18px}
-h6{font-size:16px}
+h1{font-size:200%}
+h2{font-size:180%}
+h3{font-size:150%}
+h4{font-size:130%}
+h5{font-size:110%}
+h6{font-size:100%}
 h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin:10px 0}
 
 /* layout */
@@ -42,6 +42,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin
 .j-content{max-width:980px}
 .j-row-padding,.j-row-padding>.j-half,.j-row-padding>.j-third,.j-row-padding>.j-twothird,
 .j-row-padding>.j-threequarter,.j-row-padding>.j-quarter,.j-row-padding>.j-col{padding:0 8px}
+.j-row-banner{padding:80px 8px 0px 8px}
 .j-display-container{position:relative}
 .j-display-topleft{position:absolute;left:0;top:0}
 .j-display-container:hover .j-display-hover{display:block}
@@ -81,6 +82,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin
 .j-padding-small{padding:4px 8px!important}
 .j-padding{padding:8px 16px!important}
 .j-padding-large{padding:12px 24px!important}
+.j-padding-head{margin-top:50px;padding-top:16px!important;padding-bottom:16px!important}
 .j-padding-16{padding-top:16px!important;padding-bottom:16px!important}
 .j-padding-24{padding-top:24px!important;padding-bottom:24px!important}
 .j-padding-32{padding-top:32px!important;padding-bottom:32px!important}
@@ -101,6 +103,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin
 .j-bar .j-bar-item{padding:8px 16px;float:left;width:auto;border:none;display:block;outline:0}
 .j-bar .j-dropdown-hover,.j-bar .j-dropdown-click{position:static;float:left}
 .j-bar .j-button{white-space:normal}
+.j-button{color:#ffffff!important}
 .j-button:hover{color:#000!important;background-color:#ccc!important}
 .j-bar-block .j-bar-item{width:100%;display:block;padding:8px 16px;text-align:left;border:none;white-space:normal;float:none;outline:0}
 .j-bar-block .j-center .j-bar-item{text-align:center}

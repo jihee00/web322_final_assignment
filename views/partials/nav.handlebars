@@ -1,0 +1,13 @@
+ <!-- Float links to the right -->
+ <div class="j-right">
+    <a href="/" class="j-bar-item j-button">Home</a>
+    <!-- This test to see if session exists if it does show this-->
+                {{#if user}}
+                    <a href="/user/profile" class="j-bar-item j-button">{{user.firstName}} {{user.lastName}} Dashboard</a>
+                    <a href="/user/logout" class="j-bar-item j-button">logout </a>
+                {{else}}
+                    <a href="/user/login" class="j-bar-item j-button">Login</a>
+                    <a href="/user/register" class="j-bar-item j-button">Registration </a>         
+                {{/if}}
+    <a href="/product/list" class="j-bar-item j-button">Products</a>
+</div>

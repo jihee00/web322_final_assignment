@@ -8,10 +8,18 @@
     <title>{{title}}</title>
 </head>
 <body>
-    {{> header}}
+    <header>
+            <!-- Navbar -->
+            <div class="j-top">
+                <div class="j-bar j-navy j-wide j-padding">
+                    {{> header}}
+                    {{> nav}}
+                </div>
+            </div>
+    </header>
     <div class="j-content j-padding" style="max-width:1564px">
         <main>
-            <h1>{{headingInfo}}</h1>
+           <!-- <h1>{{headingInfo}}</h1>-->
             <div>
                 {{{body}}}
             </div>

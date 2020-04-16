@@ -19,12 +19,12 @@ router.get("/register",(req,res)=>{
 //Handle the post data
 router.post("/register",(req,res)=>{
 
-    const errorMessages1 = [];
-    const errorMessages2 = [];
-    const errorMessages3 = [];
-    const errorMessages4 = [];
-    const errorMessages5 = [];
-    var charac=/^[a-zA-Z0-9]{6-12}$/;
+    let errorMessages1 = [];
+    let errorMessages2 = [];
+    let errorMessages3 = [];
+    let errorMessages4 = [];
+    let errorMessages5 = [];
+    let charac=/^[a-zA-Z0-9]{6-12}$/;
 
     //validation
     if(req.body.firstName=="")
@@ -84,6 +84,7 @@ router.post("/register",(req,res)=>{
     //If the user enters all the data and submit the form
     else
     {
+
             const {firstName,Email,psw} = req.body;
             // using Twilio SendGrid's v3 Node.js Library
             // https://github.com/sendgrid/sendgrid-nodejs

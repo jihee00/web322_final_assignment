@@ -1,0 +1,39 @@
+<div class="j-container j-padding-32" id="productAdd">
+    <h3 class="j-border-bottom j-border-light-grey j-padding-head">Add Product</h3>
+    
+    <form method="POST" action="/product/add" enctype="multipart/form-data">
+
+        <label>Product Name</label>
+        <input type="text" name="name" id="name"> <br><br>
+
+        <label>Product Price</label>
+        <input type="text" name="price" id="price"> <br><br>
+
+        <label>Description</label> <br>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label>Product quantity</label>
+        <input type="text" name="quantity" id="quantity"> <br><br>
+
+        <label>Image Upload</label>
+        <input type="file" name="productPic" id="productPic"> <br><br>
+
+        <label>Category</label><br>
+        <select name="category">
+            <option value="smart home">smart home</option>
+            <option value="smart home">smart home</option>
+            <option value="smart home">smart home</option>
+            <option value="smart home">smart home</option>
+        </select>
+        <br><br>
+
+        <label>Best seller</label>
+        <input type="checkbox" name="bestseller" id="bestseller" value="Yes"> <br><br>
+        
+        <label>Create By</label><br>
+        <input type="text" name="createBy" id="createBy"> <br><br>
+
+        <input type="submit" value="Add product">
+
+    </form>
+</div>

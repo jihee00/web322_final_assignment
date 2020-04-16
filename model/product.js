@@ -1,21 +1,98 @@
-const products =
-{
-    fakeDB:[],
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-    init()
+//This indicates the shape of the documents that will be entering the database
+const productSchema = new Schema({
+   
+    name:
     {
-        this.fakeDB.push({image:`/img/p1.jpg`, title:`LIGHTING`, price:`CDN$ 19.99`, category:`smart home`, bestseller:false});
-        this.fakeDB.push({image:`/img/p2.jpg`, title:`PC`, price:`CDN$ 1999.98`, category:`smart home`, bestseller:false});
-        this.fakeDB.push({image:`/img/p3.jpg`, title:`CAMERAS`, price:`CDN$ 1599.99`, category:`smart home`, bestseller:true});
-        this.fakeDB.push({image:`/img/p4.jpg`, title:`DOOR LOCKS`,price:`CDN$ 185.66`, category:`smart home`, bestseller:true});
-        this.fakeDB.push({image:`/img/p5.jpg`, title:`THERMOSTATS`,price:`CDN$ 88.88`, category:`smart home`, bestseller:true});
-        this.fakeDB.push({image:`/img/p6.jpg`, title:`TELEVISIONS`,price:`CDN$ 3000.99`, category:`smart home`, bestseller:true});
+      type:String,
+      required:true
     },
-    getAllproducts()
-    {
-        return this.fakeDB;
-    },
-}
 
-products.init();
-module.exports = products;
+    price:
+    {
+      type:Number,
+      required:true
+    },
+
+    description: 
+    {
+        type:String,
+        required:true
+    },
+
+    quantity:
+    {
+      type:Number,
+      required:true
+    },
+
+    category:
+    {
+      type:String,
+      required:true
+    },
+
+    bestseller:
+    {
+      type:String,
+      required:true
+    },
+
+    productPic:
+    {
+      type: String
+    },
+
+    dateCreated:
+    {
+        type:Date,
+        default:Date.now()
+    },
+
+    createBy:
+    {
+      type:String,
+      required:true
+    }
+
+  });
+
+  /*
+    For every Schema you create(Create a schema per collection), you must also create a model object. 
+    The model will allow you to perform CRUD operations on a given collection!!! 
+  */
+
+ const productModel = mongoose.model('Product', productSchema);
+
+ module.exports = productModel; 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

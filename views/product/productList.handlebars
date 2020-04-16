@@ -1,13 +1,13 @@
 <div class="j-container j-padding-32" id="product">
-  <h3 class="j-border-bottom j-border-light-grey j-padding-16">Product</h3>
+  <h3 class="j-border-bottom j-border-light-grey j-padding-head">BEST SELLER</h3>
 </div>
   <div class="j-row-padding">
-          {{#each products}}
+          {{#each data}}
                 <div class="j-col l4 m6 j-margin-bottom">
                   <div class="j-display-container">
                       <div class="j-display-topleft j-black j-padding">{{this.category}}</div>
-                        <a target="_blank" href="#"><img src="{{this.image}}" alt="{{this.title}}" style="width:93%"></a>
-                        <div>{{this.title}}</div>
+                        <a target="_blank" href="#"><img src="{{this.image}}" alt="{{this.name}}" style="width:93%"></a>
+                        <div>{{this.name}}</div>
                         <div>{{this.price}}</div>
                     </div>
                 </div>
