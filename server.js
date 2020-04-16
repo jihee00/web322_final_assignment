@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
 const session = require('express-session');
 
-//This loads all our environment variables from the keys.env
 require('dotenv').config({path:"./config/keys.env"});
 
 //import your router objects
@@ -55,7 +54,6 @@ app.use(session({
   }))
 
 app.use((req,res,next)=>{
-
   
     res.locals.user= req.session.userInfo;
 

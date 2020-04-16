@@ -1,21 +1,22 @@
 /*********************PRODUCT ROUTES***************************/
 const express = require('express');
 const router = express.Router();
-const productModel = require("../model/product");
 const path = require("path");
-//const bcrypt = require("bcryptjs");
 const isAuthenticated = require("../middleware/auth");
 const dashBoardLoader = require("../middleware/authorization");
 
+const productModel = require("../model/Product");
+const userModel = require("../model/User");
+//const orderModel = require("../model/Order");
 
-//Route to direct use to Add Task form
+//Route to direct use to Add Product Form
 router.get("/add",(req,res)=>
 {
     res.render("product/productAdd");
 });
 
 //Route to process user's request and data when the user submits the add task form
-router.post("/add",(req,res)=>
+router.post("/add", isAuthenticated, (req,res)=>
 {
         const newProduct = {
             name : req.body.name,
@@ -133,8 +134,6 @@ router.get("/edit/:id",(req,res)=>{
 
 
 })
-
-
 
 router.put("/update/:id",(req,res)=>{
 

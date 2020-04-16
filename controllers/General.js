@@ -1,6 +1,8 @@
 /*********************GENERAL ROUTES***************************/
 const express = require('express');
 const router = express.Router();
+const isAuthenticated = require("../middleware/auth");
+const dashBoardLoader = require("../middleware/authorization");
 
 
 /*GENERAL ROUTES*/
@@ -12,5 +14,9 @@ router.get("/",(req,res)=>{
             headingInfo:"",
     })
 });
+
+
+
+router.get("/userDashboard", isAuthenticated, dashBoardLoader);
 
 module.exports=router;

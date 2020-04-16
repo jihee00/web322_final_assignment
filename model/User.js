@@ -4,7 +4,6 @@ const bcrypt = require("bcryptjs");
 
 //This indicates the shape of the documents that will be entering the database
 const userSchma = new Schema({
-   
   
     firstName:
     {

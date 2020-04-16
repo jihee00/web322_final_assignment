@@ -1,10 +1,11 @@
 /*********************USER ROUTES***************************/
 const express = require('express');
 const router = express.Router();
-const userModel = require("../model/User");
 const bcrypt = require('bcryptjs');
 const isAuthenticated = require("../middleware/auth");
 const dashBoardLoader = require("../middleware/authorization");
+
+const userModel = require("../model/User");
 
 //Route to direct use to Registration form
 router.get("/register",(req,res)=>{
@@ -18,22 +19,12 @@ router.get("/register",(req,res)=>{
 //Handle the post data
 router.post("/register",(req,res)=>{
 
-    userModel.findOne({email:req.body.email})
-    .then(user=>{
-
     let errorFirstName = [];
     let errorLastName = [];
     let errorEmail = [];
     let errorPassword = [];
     let errorCpassword = [];
     let validCheck = true;
-
-    //Check to see if the user's email exist in the database
-    if(user!="")
-    {
-        errorEmail.push("This email has already been registered.");
-        validCheck = false;
-    }
 
     //valid ckeck
     if(req.body.firstName=="")
@@ -52,6 +43,11 @@ router.post("/register",(req,res)=>{
     {
         errorEmail.push("You must enter an email address.");
         validCheck = false;
+    }
+
+    else if (!req.body.email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)) 
+    {
+        errorEmail = "Please enter a valid email address";
     }
 
     if(req.body.password=="")
@@ -77,7 +73,6 @@ router.post("/register",(req,res)=>{
         errorCpassword.push("The password strings must match!");
         validCheck = false;
     }
-
 
     //If the user does not enter all the information
     if(!validCheck)
@@ -122,7 +117,7 @@ router.post("/register",(req,res)=>{
                         html: `Hello, ${firstName} ${lastName} <br>
                         Your email address is ${email} <br>
                         Your password is ${password} <br> 
-                        `,
+                        `
                     };
         
                 //Asynchornous operation (we don't know how long this will take to execute)
@@ -130,7 +125,7 @@ router.post("/register",(req,res)=>{
         
                         .then(() => {
                                 req.session.userInfo = user;
-                                res.redirect("/user/dashboard");
+                                res.redirect("/user/userDashboard");
                             })
         
                         .catch(err => {
@@ -140,12 +135,8 @@ router.post("/register",(req,res)=>{
                 })
         
         
-        .catch(err=>console.log(`Error while inserting into the data ${err}`))
-        
-            }
-        })
-    
-    .catch(err=>console.log (`Error ${err}`));
+        .catch(err=>console.log(`Error while inserting into the data ${err}`));
+        }
 });
 
 //Route to direct user to the login form
@@ -225,7 +216,7 @@ router.post("/login",(req,res)=>{
                                 if(isMatched==true)
                                 {
                                         req.session.userInfo = user;
-                                        res.redirect("/user/dashboard")
+                                        res.redirect("/user/userDashboard")
                                 }
 
                                 //no match
