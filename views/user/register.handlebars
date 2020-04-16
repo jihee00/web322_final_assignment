@@ -3,41 +3,41 @@
     <!--This will only show if the successMessage was injected into the view -->
     <div>{{successMessage}}</div>
 <section>
-    <form action="/login" method="POST">
+    <form action="/user/register" method="POST">
 
         <label for="firstName">Your first Name</label>
-        <input class="j-input j-border" type="text" id="firstName" name="firstName" value="{{firstname}}"> <br>
+        <input class="j-input j-border" type="text" id="firstName" name="firstName" value="{{firstnameValue}}"> <br>
         <!-- Will only show if the errors array exists-->
-                    {{#each errors1}}
+                    {{#each errorfirstName}}
                     <div>{{this}}</div>
                     {{/each}}
 
         <label for="lastName">Your last Name</label>
-        <input class="j-input j-border" type="text" id="lastName" name="lastName" value="{{lastname}}"> <br>
+        <input class="j-input j-border" type="text" id="lastName" name="lastName" value="{{lastnameValue}}"> <br>
         <!-- Will only show if the errors array exists-->
-                    {{#each errors2}}
+                    {{#each errorlastName}}
                     <div>{{this}}</div>
                     {{/each}}
 
-        <label for="Email">Email</label>
-        <input class="j-input j-section j-border" type="email" id="Email" name="Email" value="{{Email}}"> <br>
+        <label for="email">Email</label>
+        <input class="j-input j-section j-border" type="email" id="email" name="email" value="{{emailValue}}"> <br>
         <!-- Will only show if the errors array exists-->
-                    {{#each errors3}}
+                    {{#each errorEmail}}
                     <div>{{this}}</div>
                     {{/each}}
 
-        <label for="psw">Password</label>
-        <input class="j-input j-section j-border" type="password" placeholder="Enter Password" name="psw" value="{{psw}}"><br>
+        <label for="password">Password</label>
+        <input class="j-input j-section j-border" type="password" placeholder="Enter Password" name="password" id="password"  value="{{passwordValue}}"><br>
         <!-- Will only show if the errors array exists-->
-                    {{#each errors4}}
+                    {{#each errorPassword}}
                     <div>{{this}}</div>
                     {{/each}}
         <p>Passwords must consist of at least 6 characters.</p>
 
-        <label for="psw2">Password again</label>
-        <input class="j-input j-section j-border" type="password" placeholder="Enter Password" name="psw2" value="{{psw2}}"><br>
+        <label for="cpassword">Password again</label>
+        <input class="j-input j-section j-border" type="password" placeholder="Enter Password" name="cpassword" id="cpassword" value="{{cpasswordValue}}"><br>
         <!-- Will only show if the errors array exists-->
-                    {{#each errors5}}
+                    {{#each errorCpassword}}
                     <div>{{this}}</div>
                     {{/each}}
 

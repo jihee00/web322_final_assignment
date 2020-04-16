@@ -5,18 +5,18 @@
         <section>
             <form action="/login" method="POST">
 
-                <label for="emailLog">Email</label>
-                <input class="j-input j-border" type="email" id="emailLog" name="emailLog" value="{{emailLog}}"> <br>
+                <label for="email">Email</label>
+                <input class="j-input j-border" type="text" id="email" name="email" value="{{emailValue}}"> <br>
                 <!-- Will only show if the errors array exists-->
-                    {{#each errorsL1}}
-                    <div>{{this}}</div>
+                    {{#each errorEmail}}
+                    <div class="red">{{this}}</div>
                     {{/each}}
 
-                <label for="pswLog">PassWord</label>
-                <input class="j-input j-section j-border" type="password" placeholder="At least 6 characters" name="pswLog" value="{{pswLog}}"><br><br>
+                <label for="password">PassWord</label>
+                <input class="j-input j-section j-border" type="password" placeholder="At least 6 characters" name="password" value="{{passwordValue}}"><br><br>
                 <p>Passwords must consist of at least 6 characters.</p>
                 <!-- Will only show if the errors array exists-->
-                    {{#each errorsL2}}
+                    {{#each errorPassword}}
                     <div>{{this}}</div>
                     {{/each}}
                 <input class="j-input j-section j-border" type="submit" value="Login">

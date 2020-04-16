@@ -4,6 +4,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const fileUpload = require('express-fileupload');
+const session = require('express-session');
 
 //This loads all our environment variables from the keys.env
 require('dotenv').config({path:"./config/keys.env"});
@@ -26,7 +27,40 @@ app.use(express.static("public"));
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 
+/*
+    This is to allow specific forms and/or links that were submitted/pressed
+    to send PUT and DELETE request respectively!!!!!!!
+*/
+app.use((req,res,next)=>{
+
+    if(req.query.method=="PUT")
+    {
+        req.method="PUT"
+    }
+
+    else if(req.query.method=="DELETE")
+    {
+        req.method="DELETE"
+    }
+
+    next();
+})
+
 app.use(fileUpload());
+
+app.use(session({
+    secret: `${process.env.SECRET_KEY}`,
+    resave: false,
+    saveUninitialized: true
+  }))
+
+app.use((req,res,next)=>{
+
+  
+    res.locals.user= req.session.userInfo;
+
+    next();
+})
 
 //MAPs EXPRESS TO ALL OUR  ROUTER OBJECTS
 app.use("/",generalRoutes);
