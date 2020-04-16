@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const productModel = require("../model/product");
 const path = require("path");
-const bcrypt = require("bcryptjs");
+//const bcrypt = require("bcryptjs");
 const isAuthenticated = require("../middleware/auth");
 const dashBoardLoader = require("../middleware/authorization");
 

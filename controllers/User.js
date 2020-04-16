@@ -80,7 +80,7 @@ router.post("/register",(req,res)=>{
 
 
     //If the user does not enter all the information
-    if(!valid)
+    if(!validCheck)
     {
             res.render("user/register",{
             title : "Customer Registration",
