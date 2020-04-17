@@ -20,7 +20,7 @@ router.get("/register",(req,res)=>{
 router.post("/register",(req,res)=>{
 
         userModel.findOne({email:req.body.email})
-        .then((user)=>{
+        .then(user=>{
 
         let errorFirstName = [];
         let errorLastName = [];
@@ -28,13 +28,6 @@ router.post("/register",(req,res)=>{
         let errorPassword = [];
         let errorCpassword = [];
         let validCheck = true;
-
-        //email found
-        if(user!=null)
-        {
-                errorEmail= "This email has already been registered.";
-                validCheck = false;
-        }
 
         //valid ckeck
         if(req.body.firstName=="")
@@ -49,6 +42,12 @@ router.post("/register",(req,res)=>{
                 validCheck = false;
         }
 
+        if(user!=null)
+        {
+                errorEmail.push("This email has already been registered.");
+                validCheck = false;
+        }
+
         if(req.body.email=="")
         {
                 errorEmail.push("You must enter an email address.");
@@ -57,7 +56,8 @@ router.post("/register",(req,res)=>{
 
         else if (req.body.email.search(/[@]/) < 0) 
         {
-                errorEmail = "Please enter a valid email address";
+                errorEmail.push("Please enter a valid email address");
+                validCheck = false;
         }
 
         if(req.body.password=="")
@@ -88,7 +88,8 @@ router.post("/register",(req,res)=>{
         if(!validCheck)
         {
                 res.render("user/register",{
-                title : "Customer Registration",
+                title: "Customer Registration",
+                headingInfo:"Create account",
                 errorFirstName: errorFirstName,
                 errorLastName: errorLastName,
                 errorEmail: errorEmail,
@@ -110,7 +111,7 @@ router.post("/register",(req,res)=>{
                     firstName:req.body.firstName,
                     lastName:req.body.lastName,
                     email:req.body.email,
-                    password:req.body.password
+                    password:req.body.password,
                 }
 
                 const user = new userModel(newUser);
@@ -119,7 +120,7 @@ router.post("/register",(req,res)=>{
                         const sgMail = require('@sendgrid/mail');
                         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-                        const { firstName, lastName, email } = req.body;
+                        const {firstName, lastName, email, password} = req.body;
                         const msg = {
                                 to: `${email}`,
                                 from: `warmgrey32@gmail.com`,
@@ -185,7 +186,8 @@ router.post("/login",(req,res)=>{
     {
             res.render("user/login",{
                     title : "Login Page",
-                    errorEmail : errorEmail,
+                    headingInfo:"Sign-in",
+                    errorEmail: errorEmail,
                     errorPassword: errorPassword,
                     emailValue: req.body.email,
                     passwordValue: req.body.password
@@ -205,6 +207,8 @@ router.post("/login",(req,res)=>{
                 {
                         errors.push("Sorr your email was not found in our database");
                         res.render("user/login",{
+                        title : "Login Page",
+                        headingInfo:"Sign-in",
                         errors
                         })
                 }
@@ -226,6 +230,8 @@ router.post("/login",(req,res)=>{
                                 {
                                         errors.push("Sorry your password was wrong!");
                                         res.render("user/login",{
+                                        title : "Login Page",
+                                        headingInfo:"Sign-in",
                                         errors
                                         })
                                 }
@@ -241,7 +247,7 @@ router.post("/login",(req,res)=>{
 });
 
 router.get("/userDashboard",isAuthenticated, dashBoardLoader);
-router.get("/adminDashboard",isAuthenticated, dashBoardLoader);
+//router.get("/adminDashboard",isAuthenticated, dashBoardLoader);
 
 router.get("/logout",(req,res)=>{
 

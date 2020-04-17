@@ -49,7 +49,7 @@ const userSchema = new Schema({
   */
 
 
-userSchema.pre("save",function(next)
+userSchema.pre("save", function(next)
 {
 
     //salt random generated characters or strings

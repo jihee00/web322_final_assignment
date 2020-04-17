@@ -7,7 +7,7 @@ const dashBoardLoader = require("../middleware/authorization");
 
 const productModel = require("../model/Product");
 const userModel = require("../model/User");
-//const orderModel = require("../model/Order");
+const orderModel = require("../model/Order");
 
 //Route to direct use to Add Product Form
 router.get("/add",(req,res)=>
