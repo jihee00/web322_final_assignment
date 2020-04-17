@@ -1,30 +1,39 @@
 <h2>Update Task</h2>
-    <form method="POST" action="/task/update/{{_id}}?method=PUT">
 
-        <label>Title</label>
-        <input type="text" name="title" id="title" value="{{title}}" > <br><br>
+    <form method="POST" action="/product/edit/{{_id}}?method=PUT" enctype="multipart/form-data">
 
-        <label>Description</label>
-        <textarea id="description" name="description">{{description}}</textarea><br><br>
+        <label>Product Name</label>
+        <input type="text" name="name" id="name" value="{{name}}"> <br><br>
 
-        <label>Due Date</label>
-        <input type="date" name="dueDate" id="dueDate" value="{{dueDate}}">{{dueDate}}<br><br>
+        <label>Product Price</label>
+        <input type="text" name="price" id="price" value="{{price}}"> <br><br>
 
-        <label>Priority</label>
-        <select name="priority">
-            <option value="low" >Low</option>
-            <option value="medium" >Medium</option>
-            <option value="high" >High</option>
+        <label>Description</label> <br>
+        <textarea id="description" name="description" value="{{description}}"></textarea><br><br>
+
+        <label>Product quantity</label>
+        <input type="text" name="quantity" id="quantity" value="{{quantity}}"> <br><br>
+
+
+        <img class="editIMG" src="/img/{{image}}" alt={{image}}>
+        <label>Image Update</label>
+        <input type="file" name="productPic" id="productPic"> <br><br>
+
+        <label>Category</label><br>
+        <select name="category">
+            <option value="Shop Valentine's Day gifts" {{#if_eq category value="Shop Valentine's Day gifts"}} selected {{/if_eq}}>Shop Valentine's Day gifts</option>
+            <option value="Cleaning supplies" {{#if_eq category value="Cleaning supplies"}} selected {{/if_eq}}>Cleaning supplies</option>
+            <option value="Shop deals in Tools" {{#if_eq category value="Shop deals in Tools"}} selected {{/if_eq}}>Shop deals in Tools</option>
+            <option value="Smart home" {{#if_eq category value="Smart home"}} selected {{/if_eq}}>Smart home</option>
         </select>
         <br><br>
 
-        <label>Status</label>
-        <select name="status">
-            <option value="open">Open</option>
-            <option value="hold">On Hold</option>
-            <option value="completed">Completed</option>
-        </select>
-        <br><br>
+        <label>Best seller</label>
+        <input type="checkbox" name="bestseller" id="bestseller" value="True" {{#if_eq bestSeller value=true}} checked {{/if_eq}}> <br><br>
+        
+        <label>Update By</label><br>
+        <input type="text" name="createBy" id="createBy" value="createBy"> <br><br>
 
-        <input type="submit" value="Update Task">
+        <input type="submit" value="Update product">
+
     </form>

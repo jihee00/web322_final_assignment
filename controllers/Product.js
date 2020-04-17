@@ -16,7 +16,7 @@ router.get("/add",(req,res)=>
 });
 
 //Route to process user's request and data when the user submits the add task form
-router.post("/add", isAuthenticated, (req,res)=>
+router.post("/add", (req,res)=>
 {
         const newProduct = {
             name : req.body.name,
@@ -62,15 +62,12 @@ router.post("/add", isAuthenticated, (req,res)=>
 ////Route to fetch all tasks
 router.get("/list",(req,res)=>
 {
-    //pull from the database , get the results that was returned and then inject that results into
-    //the taskDashboard
-
+    //pull from the database , get the results that was returned and then inject that results into the list
     productModel.find()
     .then((product)=>{
 
 
-        //Filter out the information that you want from the array of documents that was returned into
-        //a new array
+        //Filter out the information that you want from the array of documents that was returned into a new array
 
         //Array 300 documents meaning that the array has 300 elements 
 

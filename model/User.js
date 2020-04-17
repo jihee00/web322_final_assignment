@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const bcrypt = require("bcryptjs");
 
 //This indicates the shape of the documents that will be entering the database
-const userSchma = new Schema({
+const userSchema = new Schema({
   
     firstName:
     {
@@ -29,12 +29,6 @@ const userSchma = new Schema({
         required:true
     },
 
-    password2:
-    {
-        type:String,
-        required:true
-    },
-
     dateCreated:
     {
         type:Date,
@@ -46,6 +40,7 @@ const userSchma = new Schema({
         type:String,
         default:"User"
     }
+
   });
 
   /*
@@ -54,7 +49,7 @@ const userSchma = new Schema({
   */
 
 
-userSchma.pre("save",function(next)
+userSchema.pre("save",function(next)
 {
 
     //salt random generated characters or strings
@@ -71,9 +66,8 @@ userSchma.pre("save",function(next)
     })
     .catch(err=>console.log(`Error occured when salting ${err}`));
 
-
-
 })
- const userModel = mongoose.model('User', userSchma);
 
- module.exports = userModel;
+const userModel = mongoose.model('User', userSchema);
+
+module.exports = userModel;
