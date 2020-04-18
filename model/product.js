@@ -42,19 +42,20 @@ const productSchema = new Schema({
 
     productPic:
     {
-      type: String
+      type: String,
+      required:true
+    },
+
+    link:
+    {
+        type:String,
+        default: `#`
     },
 
     dateCreated:
     {
         type:Date,
         default:Date.now()
-    },
-
-    createBy:
-    {
-      type:String,
-      required:true
     }
 
   });

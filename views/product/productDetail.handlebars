@@ -1,3 +1,44 @@
+<div class="j-container j-padding-32" id="productAdd">
+    <h3 class="j-border-bottom j-border-light-grey j-padding-head">Product Detail</h3>
+
+        <section id="detail">
+            <div>
+                <div>
+                        <div>
+                            <h2>{{this.name}}</h2>
+                            <p>Category: {{this.category}}</h2>
+                            <p>Description: {{this.description}}</p>
+                            <p id="price">Price: ${{this.price}}</p>
+                            <p id="quantity">In Stock: {{this.quantity}}</p>
+                            <div>
+                                <form method="POST" action="/cart/{{_id}}?method=PUT">
+                                    <select name="quantity">
+                                            <label class="floatLabel">Quantity</label><br>
+                                            <option selected value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
+                                            <option value=5>5</option>
+                                            <option value=6>6</option>
+                                            <option value=7>7</option>
+                                            <option value=8>8</option>
+                                            <option value=9>9</option>
+                                            <option value=10>10</option>
+                                    </select><br>
+                                    <p>
+                                        <input type="submit" value="Add to Cart">
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                        <div>
+                                <a href="{{this.link}}"><img src="/upload/{{this.productPic}}" style="max-width:100%;height:auto;"></a>
+                        </div>
+                    </div>
+            </div>
+            
+        </section>
+
 <div class="product_image_area">
     <div class="container">
       <div class="row justify-content-center">
@@ -35,14 +76,7 @@
     </div>
 
     <div module="product_detail" class="cboth">
-	<!--
-		※ 옵션 선택시 품목의 할인가로 표시됩니다.
-		$use_item_sale_price = T
-	-->
-    <!--@css(/css/module/product/detail.css)-->
-    <!--
-		$coupon_download_page = /coupon/coupon_productdetail.html
-    -->
+	
     <div class="detailArea">
         <div class="infoArea" id="infoArea_fixed">
 			<div class="cboth headingArea">
@@ -66,10 +100,7 @@
 			</div>
 
             <div module="product_detaildesign">
-                <!--
-                    출력 갯수 지정 변수, 없으면 설정된 전체가 나옵니다.
-                    count = 10
-                -->
+              
                 <table border="1" summary="">
                     <caption>{$name} 기본 정보</caption>
                     <tbody>

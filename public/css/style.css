@@ -13,7 +13,7 @@ small{font-size:80%}
 img{border-style:none;vertical-align:top;}
 button,input,select,textarea,optgroup{font:inherit;margin:0}
 optgroup{font-weight:bold}
-button,input{overflow:visible}
+button,input{overflow:visible;width: auto;}
 button,select{text-transform:none}
 fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:.35em .625em .75em;vertical-align:top;}
 legend{color:inherit;display:table;max-width:100%;padding:0;white-space:normal}
@@ -119,3 +119,63 @@ h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin
 .j-black,.j-hover-black:hover{color:#fff!important;background-color:#000!important}
 .j-light-grey,.j-hover-light-grey:hover,.j-light-gray,.j-hover-light-gray:hover{color:#000!important;background-color:#f1f1f1!important}
 .j-dark-grey,.j-hover-dark-grey:hover,.j-dark-gray,.j-hover-dark-gray:hover{color:#fff!important;background-color:#616161!important}
+
+/* Details */
+#detail,#adminDashboard {padding-top: 50px;}
+#detail select, #adminDashboard select {width: auto;}
+#detail input, #adminDashboard input {width: auto;}
+
+  /*========================> Bestsellers <=========================*/
+
+  .bestsellers {
+    padding-top: 20px;
+    display: flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .bestsellers-box, .products-box {
+    padding: 30px;
+    margin: 10px;
+    background-color: #ffbac4;
+  }
+
+  .bestsellers p , .products-class p{
+    text-align: center;
+    font-weight: 600;
+
+  }
+  .bestsellers h6, .products-class h6{
+    width: 300px;
+    font-weight: 300;
+  }
+
+  
+ /*========================> Products <=========================*/
+ .products-class {
+    padding-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#products select {
+  margin: 25px;
+  width: auto;
+}
+#products input {
+  margin: 25px;
+  width: auto;
+}
+
+
+  /*========================> Details <=========================*/
+  #detail,#adminDashboard {
+    padding-top: 50px;
+  }
+  #detail select, #adminDashboard select {
+  width: auto;
+}
+#detail input, #adminDashboard input {
+  width: auto;
+}

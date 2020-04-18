@@ -1,39 +1,43 @@
-<h2>Update Task</h2>
+<div class="j-container j-padding-32" id="product">
+  <h3 class="j-border-bottom j-border-light-grey j-padding-head">Update Product</h3>
+</div>
+    <section>
 
-    <form method="POST" action="/product/edit/{{_id}}?method=PUT" enctype="multipart/form-data">
+        <form method="POST" action="/product/edit/{{_id}}?method=PUT" enctype="multipart/form-data">
 
-        <label>Product Name</label>
-        <input type="text" name="name" id="name" value="{{name}}"> <br><br>
+            <label>Product Name</label>
+            <input type="text" name="name" id="name" value="{{name}}"> <br><br>
 
-        <label>Product Price</label>
-        <input type="text" name="price" id="price" value="{{price}}"> <br><br>
+            <label>Product Price</label>
+            <input type="text" name="price" id="price" value="{{price}}"> <br><br>
 
-        <label>Description</label> <br>
-        <textarea id="description" name="description" value="{{description}}"></textarea><br><br>
+            <label>Description</label> <br>
+            <textarea id="description" name="description" value="{{description}}"></textarea><br><br>
 
-        <label>Product quantity</label>
-        <input type="text" name="quantity" id="quantity" value="{{quantity}}"> <br><br>
+            <label>Product quantity</label>
+            <input type="text" name="quantity" id="quantity" value="{{quantity}}"> <br><br>
 
 
-        <img class="editIMG" src="/img/{{image}}" alt={{image}}>
-        <label>Image Update</label>
-        <input type="file" name="productPic" id="productPic"> <br><br>
+            <img src="/upload/{{image}}" alt={{image}}>
+            <label>Image Update</label>
+            <input type="file" name="productPic" id="productPic"> <br><br>
 
-        <label>Category</label><br>
-        <select name="category">
-            <option value="Shop Valentine's Day gifts" {{#if_eq category value="Shop Valentine's Day gifts"}} selected {{/if_eq}}>Shop Valentine's Day gifts</option>
-            <option value="Cleaning supplies" {{#if_eq category value="Cleaning supplies"}} selected {{/if_eq}}>Cleaning supplies</option>
-            <option value="Shop deals in Tools" {{#if_eq category value="Shop deals in Tools"}} selected {{/if_eq}}>Shop deals in Tools</option>
-            <option value="Smart home" {{#if_eq category value="Smart home"}} selected {{/if_eq}}>Smart home</option>
-        </select>
-        <br><br>
+            <label>Category</label><br>
+            <select name="category">
+                <option value="Shop Valentine's Day gifts" {{#if_eq category value="Shop Valentine's Day gifts"}} selected {{/if_eq}}>Shop Valentine's Day gifts</option>
+                <option value="Cleaning supplies" {{#if_eq category value="Cleaning supplies"}} selected {{/if_eq}}>Cleaning supplies</option>
+                <option value="Shop deals in Tools" {{#if_eq category value="Shop deals in Tools"}} selected {{/if_eq}}>Shop deals in Tools</option>
+                <option value="Smart home" {{#if_eq category value="Smart home"}} selected {{/if_eq}}>Smart home</option>
+            </select>
+            <br><br>
 
-        <label>Best seller</label>
-        <input type="checkbox" name="bestseller" id="bestseller" value="True" {{#if_eq bestSeller value=true}} checked {{/if_eq}}> <br><br>
-        
-        <label>Update By</label><br>
-        <input type="text" name="createBy" id="createBy" value="createBy"> <br><br>
+            <label>Best seller</label>
+            <select name="bestseller">
+                    <option value="true">Yes</option>
+                    <option selected value="false">No</option>
+            </select>
 
-        <input type="submit" value="Update product">
+            <input type="submit" value="Update product">
 
-    </form>
+        </form>
+    </section>

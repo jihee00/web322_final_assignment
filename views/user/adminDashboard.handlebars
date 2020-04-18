@@ -1,7 +1,77 @@
 <div class="j-container j-padding-32">
     <h3 class="j-border-bottom j-border-light-grey j-padding-head">Admin Dashboard</h3>
     <h2>Welcome {{user.firstName}} {{user.lastName}}</h2>
-    <div>
-        <a href="/login/logout" >Logout</a>
-    </div>
 </div>
+
+<section id="adminDashboard">
+    <div>
+        <div class="form-group">
+            <form method="POST" action="/dashboard">
+                <select class="form-control form-control-lg" name="category">
+                    <option selected value="all">All</option>
+                    <option value="Shop Valentine's Day gifts">Shop Valentine's Day gifts</option>
+                    <option value="Cleaning supplies">Cleaning supplies</option>
+                    <option value="Shop deals in Tools">Shop deals in Tools</option>
+                    <option value="Smart home">Smart home</option>       
+                </select>
+                <input class="form-control form-control-lg" type="submit" value="Search">
+            </form>
+        </div>
+            <table class="table table-striped table-dark" border="1" style="text-align: center;">
+                <thead class="thead-light">
+                        <th>ID</th>
+                        <th>Category</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Bestseller</th>
+                        <th>Photo</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                </thead>
+                <tbody>
+                    {{#each data}}
+                        <tr>
+                            <td>
+                                <span>{{this.id}}</span>
+                        </td>
+                        <td>
+                                <span>{{this.category}}</span>
+                        </td>
+                        <td>
+                            <span>{{this.name}}</span>
+                        </td>
+                        <td>
+                            <span>{{this.description}}</span>
+                        </td>
+                        <td>
+                                <span>{{this.price}}</span>
+                        </td>
+                        <td>
+                            <span>{{this.bestseller}}</span>
+                        </td>
+                        
+                        <td>
+                            <img src="/upload/{{this.productPic}}" width="30px" height="30px">
+                        </td>
+                        <td>
+                            <span>{{this.quantity}}</span>
+                        </td>
+                        <td>
+                                <a class="btn btn-danger btn-lg" href="/products/edit/{{this.id}}" class="edit-delete-button">Edit</a>
+                                <a class="btn btn-danger btn-lg" href="/products/delete/{{this.id}}?method=DELETE" class="edit-delete-button">Delete</a>
+                        </td> 
+                        </tr>
+
+                        {{else}}
+                            <td colspan="9">
+                                <p>No products in the database</p>
+                            </td>
+
+                        {{/each}}
+            </tbody>
+            </table><br>
+            <a href="/products/add" class="btn btn-danger btn-lg" role="button">Add Product</a>
+    </div>
+    
+</section>

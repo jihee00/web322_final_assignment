@@ -4,9 +4,10 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 
 const isAuthenticated = require("../middleware/authentication");
-//const dashBoardLoader = require("../middleware/authorization");
+const dashBoardLoader = require("../middleware/authorization");
 
 const userModel = require("../model/User");
+const cartModel = require("../model/Cart");
 
 //Route to direct use to Registration form
 router.get("/register",(req,res)=>{
@@ -135,7 +136,7 @@ router.post("/register",(req,res)=>{
                 
                                 .then(() => {
                                         req.session.userInfo = user;
-                                        res.redirect("/user/userDashboard");
+                                        res.redirect("/dashboard");
                                 })
                 
                                 .catch(err => {
@@ -143,12 +144,10 @@ router.post("/register",(req,res)=>{
                                 })
                 
                         })
-                
-                
-                .catch(err=>console.log(`Error while inserting into the data ${err}`));
-                }
-        })
-        .catch(err=>console.log (`Error when finding email in database ${err}`));
+                .catch(err=>{console.log(`Error while inserting into the data ${err}`)});
+               
+        } })
+        .catch(err=>{console.log (`Error when finding email in database ${err}`)});
 });
 
 //Route to direct user to the login form
@@ -194,7 +193,7 @@ router.post("/login",(req,res)=>{
     else 
     {
         userModel.findOne({email:req.body.email})
-        .then(user=>{
+        .then((user)=>{
 
                 //Check to see if the user's email exist in the database
                 const errors = [];
@@ -218,7 +217,7 @@ router.post("/login",(req,res)=>{
                                 if(isMatched)
                                 {
                                         req.session.userInfo = user;
-                                        res.redirect("/user/userDashboard")
+                                        res.redirect("dashboard")
                                 }
 
                                 //no match
@@ -243,8 +242,10 @@ router.post("/login",(req,res)=>{
 router.get("/logout",isAuthenticated,(req,res)=>{
 
         req.session.destroy();
-        res.redirect("/user/login")
-        
+        res.redirect("/user/login");
+
+        cartModel.deleteMany({userid: req.session.userInfo._id})
+        .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));
 })
 
 module.exports=router;

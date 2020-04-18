@@ -2,17 +2,17 @@
     <h3 class="j-border-bottom j-border-light-grey j-padding-head">Create account</h3>
     <!--This will only show if the successMessage was injected into the view -->
     <div>{{successMessage}}</div>
-<section>
-    <form action="/user/register" method="POST">
 
-        <label for="firstName">Your first Name</label>
+    <section>
+    <form action="/user/register" method="POST">
+        <label for="firstName">Your first Name</label><br><br>
         <input class="j-input j-border" type="text" id="firstName" name="firstName" value="{{firstNameValue}}"> <br>
         <!-- Will only show if the errors array exists-->
                     {{#each errorfirstName}}
                     <div>{{this}}</div>
                     {{/each}}
 
-        <label for="lastName">Your last Name</label>
+        <label for="lastName">Your last Name</label><br><br>
         <input class="j-input j-border" type="text" id="lastName" name="lastName" value="{{lastNameValue}}"> <br>
         <!-- Will only show if the errors array exists-->
                     {{#each errorlastName}}
@@ -45,6 +45,6 @@
         <p>By creating an account, you agree to Amazon's Conditions of Use and Privacy Notice.</p>
 
     </form>
-    <p>Already have an account? <a href="/login">Sign in</a></p>
+    <p>Already have an account? <a href="/user/login">Sign in</a></p>
 </section>
 </div>

@@ -3,14 +3,9 @@ const express = require('express');
 const router = express.Router();
 const path = require("path");
 const isAuthenticated = require("../middleware/authentication");
-const dashBoardLoader = require("../middleware/authorization");
 
 const productModel = require("../model/Product");
-const userModel = require("../model/User");
-const orderModel = require("../model/Order");
 
-
-//Route to update user data after they submit the form
 router.get("/list",(req,res)=>
 {
     //pull from the database , get the results that was returned and then inject that results into the list
@@ -31,8 +26,8 @@ router.get("/list",(req,res)=>
                     quantity : product.quantity,
                     category : product.category,
                     bestseller : product.bestseller,
-                    createBy : product.createBy,
-                    productPic : product.productPic
+                    productPic : product.productPic,
+                    link : product.link
                 }
         });
 
@@ -53,7 +48,6 @@ router.post("/list",(req,res)=>
     .then((product)=>{
 
         //Filter out the information that you want from the array of documents that was returned into a new array
-
         //Array 300 documents meaning that the array has 300 elements 
 
         const filteredProduct =   product.map(product=>{
@@ -66,8 +60,8 @@ router.post("/list",(req,res)=>
                     quantity : product.quantity,
                     category : product.category,
                     bestseller : product.bestseller,
-                    createBy : product.createBy,
-                    productPic : product.productPic
+                    productPic : product.productPic,
+                    link : product.link
                 }
         });
 
@@ -79,6 +73,7 @@ router.post("/list",(req,res)=>
     .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
   }
     else {
+
         productModel.find({category: req.body.category})
         .then((product)=>{
             //Filter out the information that you want from the array of documents that was returned into
@@ -94,8 +89,8 @@ router.post("/list",(req,res)=>
                     quantity : product.quantity,
                     category : product.category,
                     bestseller : product.bestseller,
-                    createBy : product.createBy,
-                    productPic : product.productPic
+                    productPic : product.productPic,
+                    link : product.link
                 }
             });
     
@@ -132,7 +127,6 @@ router.post("/add",isAuthenticated,(req,res)=>
             quantity : req.body.quantity,
             category : req.body.category,
             bestseller : req.body.bestseller,
-            createBy : req.body.createBy,
             productPic : req.files.productPic.name
         }
 
@@ -150,17 +144,18 @@ router.post("/add",isAuthenticated,(req,res)=>
         // rename image
         req.files.productPic.name = `pro_pic_${product._id}${path.parse(req.files.productPic.name).ext}`;
         // move to my folder
-        req.files.productPicPic.mv(`public/upload/${req.files.productPic.name}`)
+        req.files.productPicPic.mv(`./public/upload/${req.files.productPic.name}`)
 
         .then(()=>{
 
             productModel.updateOne({_id:product._id},{
                 productPic: req.files.productPic.name
             })
-            .then(()=>{
-                res.redirect(`/product/list/${product._id}`)
-            })
 
+            .then(()=>{
+                res.redirect(`/product/list`)
+            })
+            .catch(err=>console.log(`Update to database failed :${err}`));
         })
      })
      .catch(err=>console.log(`Error happened when inserting in the database :${err}`));
@@ -172,7 +167,7 @@ router.get("/edit/:id",(req,res)=>{
     productModel.findById(req.params.id)
     .then((product)=>{
 
-        const {_id,name,price,description,quantity,category,bestseller,createBy,productPic} = product;
+        const {_id,name,price,description,quantity,category,bestseller,productPic,link} = product;
         res.render("product/productEdit",{
             _id,
             name,
@@ -181,14 +176,12 @@ router.get("/edit/:id",(req,res)=>{
             quantity,
             category,
             bestseller,
-            createBy,
-            productPic
+            productPic,
+            link
         })
 
     })
     .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
-
-
 })
 
 router.put("/edit/:id",(req,res)=>{
@@ -200,14 +193,13 @@ router.put("/edit/:id",(req,res)=>{
         quantity : req.body.quantity,
         category : req.body.category,
         bestseller : req.body.bestseller,
-        createBy : req.body.createBy,
         productPic : req.files.productPic.name
     }
 
 
     productModel.updateOne({_id:req.params.id}, product)
     .then(()=>{
-        res.redirect("/product/productDashboard");
+        res.redirect("/dashboard");
     })
     .catch(err=>console.log(`Error happened when updating data from the database :${err}`));
 
@@ -220,7 +212,7 @@ router.get("/detail/:id",(req,res)=>{
     productModel.findById(req.params.id)
     .then((product)=>{
 
-        const {_id,name,price,description,quantity,category,bestseller,createBy,productPic} = product;
+        const {_id,name,price,description,quantity,category,bestseller,productPic,link} = product;
 
         res.render("product/productDetail",{
             _id,
@@ -230,8 +222,8 @@ router.get("/detail/:id",(req,res)=>{
             quantity,
             category,
             bestseller,
-            createBy,
-            productPic
+            productPic,
+            link
         })
 
     })
@@ -245,7 +237,7 @@ router.delete("/delete/:id",(req,res)=>{
     
     productModel.deleteOne({_id:req.params.id})
     .then(()=>{
-        res.redirect("/product/productDashboard");
+        res.redirect("/dashboard");
     })
     .catch(err=>console.log(`Error happened when updating data from the database :${err}`));
 

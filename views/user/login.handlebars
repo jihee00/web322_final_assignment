@@ -3,16 +3,16 @@
     <!--This will only show if the successMessage was injected into the view -->
     <div>{{successMessage}}</div>
         <section>
-            <form action="/login" method="POST">
+            <form action="/user/login" method="POST">
 
-                <label for="email">Email</label>
+                <label for="email">Email</label><br><br>
                 <input class="j-input j-border" type="text" id="email" name="email" value="{{emailValue}}"> <br>
                 <!-- Will only show if the errors array exists-->
                     {{#each errorEmail}}
                         <div>{{this}}</div>
                     {{/each}}
                     
-                <label for="password">PassWord</label>
+                <label for="password">PassWord</label><br>
                 <input class="j-input j-section j-border" type="password" placeholder="At least 6 characters" name="password" value="{{passwordValue}}"><br><br>
                 <p>Passwords must consist of at least 6 characters.</p>
                 <!-- Will only show if the errors array exists-->
@@ -24,7 +24,7 @@
                     {{/each}}
                 <input class="j-input j-section j-border" type="submit" value="Login">
             </form>
-            <form action="/register" method="get" target="_blank">
+            <form action="/user/register" method="get" target="_blank">
                 <input class="j-input j-section j-border" type="submit" value="Create your Amazon account">
             </form>
         </section>

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //This indicates the shape of the documents that will be entering the database
-const orderSchema = new Schema({
+const cartSchema = new Schema({
    
     name:
     {
@@ -37,12 +37,6 @@ const orderSchema = new Schema({
     {
         type:Date,
         default:Date.now()
-    },
-
-    createBy:
-    {
-      type:String,
-      required:true
     }
 
   });
@@ -52,6 +46,6 @@ const orderSchema = new Schema({
     The model will allow you to perform CRUD operations on a given collection!!! 
   */
 
- const orderModel = mongoose.model('Order', orderSchema);
+ const cartModel = mongoose.model('cart', cartSchema);
 
- module.exports = orderModel; 
+ module.exports = cartModel; 

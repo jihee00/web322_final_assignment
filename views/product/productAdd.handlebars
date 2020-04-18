@@ -3,19 +3,19 @@
     
     <form method="POST" action="/product/add" enctype="multipart/form-data">
 
-        <label>Product Name</label>
+        <label>Product Name</label><br>
         <input type="text" name="name" id="name"> <br><br>
 
-        <label>Product Price</label>
+        <label>Product Price</label><br>
         <input type="text" name="price" id="price"> <br><br>
 
         <label>Description</label> <br>
         <textarea id="description" name="description"></textarea><br><br>
 
-        <label>Product quantity</label>
+        <label>Product quantity</label><br>
         <input type="text" name="quantity" id="quantity"> <br><br>
 
-        <label>Image Upload</label>
+        <label>Image Upload</label><br>
         <input type="file" name="productPic" id="productPic"> <br><br>
 
         <label>Category</label><br>
@@ -27,11 +27,11 @@
         </select>
         <br><br>
 
-        <label>Best seller</label>
-        <input type="checkbox" name="bestseller" id="bestseller" value="True"> <br><br>
-        
-        <label>Create By</label><br>
-        <input type="text" name="createBy" id="createBy"> <br><br>
+        <label>Best seller</label><br>
+        <select name="bestseller">
+                <option value="true">Yes</option>
+                <option selected value="false">No</option>
+        </select><br><br>
 
         <input type="submit" value="Add product">
 
