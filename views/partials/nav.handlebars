@@ -1,12 +1,12 @@
  <!-- Float links to the right -->
  <div class="j-right">
     <a href="/" class="j-bar-item j-button">Home</a>
-    <a href="/product/productDashboard" class="j-bar-item j-button">Products</a>
+    <a href="/product/list" class="j-bar-item j-button">Product</a>
     <!-- This test to see if session exists if it does show this-->
                 {{#if user}}
                     <a href="/dashboard" class="j-bar-item j-button">Dashboard</a>
                     <a href="/user/logout" class="j-bar-item j-button">logout </a>
-                    <a href="/cart" class="j-bar-item j-button"><img src="/img/menu_order.jpg" alt="order" width="100%"></a>
+                    <a href="/cart" class="j-bar-item j-button">Order</a>
                 {{else}}
                     <a href="/user/login" class="j-bar-item j-button">Login</a>
                     <a href="/user/register" class="j-bar-item j-button">Registration </a>         

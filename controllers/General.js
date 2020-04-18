@@ -181,7 +181,7 @@ router.put("/cart/:id", isAuthenticated, (req,res) => {
 router.get("/cart", isAuthenticated, (req,res) => {
     if(!req.session.cart || req.session.cart == null || req.session.cart == undefined) {
         const err = "Your cart is empty";
-        res.render("cart", {
+        res.render("user/cart", {
             err
         });
     }
@@ -189,7 +189,7 @@ router.get("/cart", isAuthenticated, (req,res) => {
         cartModel.findOne({userid: req.session.userInfo._id})
         .then((cart)=>{
             let {products, products_qty, total_items, total_amount } = cart;
-            res.render("cart", {
+            res.render("user/cart", {
                 products, products_qty, total_items, total_amount
             });
         })
@@ -238,7 +238,7 @@ router.post("/checkout", isAuthenticated,(req,res) => {
                 })
                 .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));;
 
-                res.render("checkout", {success: "Thank you for shopping with us. An email has been sent with order details"});
+                res.render("user/checkout", {success: "Thank you for shopping with us. An email has been sent with order details"});
         })
         .catch(err => {
             console.log(`Error on sending email: ${err}`);
@@ -249,7 +249,7 @@ router.post("/checkout", isAuthenticated,(req,res) => {
 });
 
 router.get("/checkout", isAuthenticated, (req,res) => {
-    res.render("checkout");
+    res.render("user/checkout");
 });
 
 module.exports = router;

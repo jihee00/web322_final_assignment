@@ -201,7 +201,7 @@ router.post("/login",(req,res)=>{
                 //there was no matching email
                 if(user==null)
                 {
-                        errors.push("Sorr your email was not found in our database");
+                        errors.push("Sorry, your email and/or password incorrect");
                         res.render("user/login",{
                         title : "Login Page",
                         errors
@@ -217,7 +217,7 @@ router.post("/login",(req,res)=>{
                                 if(isMatched)
                                 {
                                         req.session.userInfo = user;
-                                        res.redirect("dashboard")
+                                        res.redirect("/product/list")
                                 }
 
                                 //no match
