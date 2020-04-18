@@ -2,21 +2,128 @@
 const express = require('express');
 const router = express.Router();
 const path = require("path");
-const isAuthenticated = require("../middleware/auth");
+const isAuthenticated = require("../middleware/authentication");
 const dashBoardLoader = require("../middleware/authorization");
 
 const productModel = require("../model/Product");
 const userModel = require("../model/User");
 const orderModel = require("../model/Order");
 
-//Route to direct use to Add Product Form
-router.get("/add",(req,res)=>
+
+//Route to update user data after they submit the form
+router.get("/list",(req,res)=>
 {
-    res.render("product/productAdd");
+    //pull from the database , get the results that was returned and then inject that results into the list
+    productModel.find()
+    .then((product)=>{
+
+        //Filter out the information that you want from the array of documents that was returned into a new array
+
+        //Array 300 documents meaning that the array has 300 elements 
+
+        const filteredProduct =   product.map(product=>{
+
+                return {
+                    id: product._id,
+                    name : product.name,
+                    price : product.price,
+                    description: product.description,
+                    quantity : product.quantity,
+                    category : product.category,
+                    bestseller : product.bestseller,
+                    createBy : product.createBy,
+                    productPic : product.productPic
+                }
+        });
+
+        res.render("product/productDashboard",{
+           data : filteredProduct
+        });
+
+    })
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+  
 });
 
-//Route to process user's request and data when the user submits the add task form
-router.post("/add", (req,res)=>
+router.post("/list",(req,res)=>
+{
+    if (req.body.category == "all") {
+    //pull from the database , get the results that was returned and then inject that results into the list
+    productModel.find()
+    .then((product)=>{
+
+        //Filter out the information that you want from the array of documents that was returned into a new array
+
+        //Array 300 documents meaning that the array has 300 elements 
+
+        const filteredProduct =   product.map(product=>{
+
+                return {
+                    id: product._id,
+                    name : product.name,
+                    price : product.price,
+                    description: product.description,
+                    quantity : product.quantity,
+                    category : product.category,
+                    bestseller : product.bestseller,
+                    createBy : product.createBy,
+                    productPic : product.productPic
+                }
+        });
+
+        res.render("product/productDashboard",{
+           data : filteredProduct
+        });
+
+    })
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+  }
+    else {
+        productModel.find({category: req.body.category})
+        .then((product)=>{
+            //Filter out the information that you want from the array of documents that was returned into
+            //a new array
+            //Array 300 documents meaning that the array has 300 elements 
+            const filteredProduct =   product.map(product=>{
+
+                return {
+                    id: product._id,
+                    name : product.name,
+                    price : product.price,
+                    description: product.description,
+                    quantity : product.quantity,
+                    category : product.category,
+                    bestseller : product.bestseller,
+                    createBy : product.createBy,
+                    productPic : product.productPic
+                }
+            });
+    
+            res.render("product/productDashboard",{
+                data : filteredProduct
+             });
+    
+        })
+        .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+    }
+});
+
+//Route to direct use to Add Product Form
+router.get("/add",isAuthenticated,(req,res)=>
+{
+    if(req.session.userInfo.type=="Admin")
+    {
+        res.render("product/productAdd");
+    }
+    
+    else
+    {
+        res.redirect("list");
+    }
+});
+
+//Route to process user's request and data when the user submits the add product form
+router.post("/add",isAuthenticated,(req,res)=>
 {
         const newProduct = {
             name : req.body.name,
@@ -41,17 +148,17 @@ router.post("/add", (req,res)=>
      .then((product)=>{
 
         // rename image
-        req.files.productPic.name = `pro_pic_${user._id}${path.parse(req.files.productPic.name).ext}`;
+        req.files.productPic.name = `pro_pic_${product._id}${path.parse(req.files.productPic.name).ext}`;
         // move to my folder
-        req.files.productPicPic.mv(`public/img/${req.files.productPic.name}`)
+        req.files.productPicPic.mv(`public/upload/${req.files.productPic.name}`)
 
         .then(()=>{
 
-            productModel.updateOne({_id:user._id},{
+            productModel.updateOne({_id:product._id},{
                 productPic: req.files.productPic.name
             })
             .then(()=>{
-                res.redirect(`/product/list/${user._id}`)
+                res.redirect(`/product/list/${product._id}`)
             })
 
         })
@@ -59,58 +166,10 @@ router.post("/add", (req,res)=>
      .catch(err=>console.log(`Error happened when inserting in the database :${err}`));
 });
 
-////Route to fetch all tasks
-router.get("/list",(req,res)=>
-{
-    //pull from the database , get the results that was returned and then inject that results into the list
-    productModel.find()
-    .then((product)=>{
-
-
-        //Filter out the information that you want from the array of documents that was returned into a new array
-
-        //Array 300 documents meaning that the array has 300 elements 
-
-        const filteredProduct =   product.map(product=>{
-
-                return {
-
-                    id: product._id,
-                    name : product.name,
-                    price : product.price,
-                    description: product.description,
-                    quantity : product.quantity,
-                    category : product.category,
-                    bestseller : product.bestseller,
-                    createBy : product.createBy,
-                    productPic : product.productPic
-                }
-        });
-
-
-
-        res.render("product/productDashboard",{
-           data : filteredProduct
-        });
-
-    })
-    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
-
-    
-  
-});
-
-//Route to direct user to the task profile page
-router.get("/description",(req,res)=>{
-
-    
-
-})
-
-
+//Route to direct user to edit product form
 router.get("/edit/:id",(req,res)=>{
 
-    taskModel.findById(req.params.id)
+    productModel.findById(req.params.id)
     .then((product)=>{
 
         const {_id,name,price,description,quantity,category,bestseller,createBy,productPic} = product;
@@ -132,7 +191,7 @@ router.get("/edit/:id",(req,res)=>{
 
 })
 
-router.put("/update/:id",(req,res)=>{
+router.put("/edit/:id",(req,res)=>{
 
     const product = {
         name : req.body.name,
@@ -148,7 +207,7 @@ router.put("/update/:id",(req,res)=>{
 
     productModel.updateOne({_id:req.params.id}, product)
     .then(()=>{
-        res.redirect("/product/list");
+        res.redirect("/product/productDashboard");
     })
     .catch(err=>console.log(`Error happened when updating data from the database :${err}`));
 
@@ -156,28 +215,41 @@ router.put("/update/:id",(req,res)=>{
 });
 
 
+router.get("/detail/:id",(req,res)=>{
+
+    productModel.findById(req.params.id)
+    .then((product)=>{
+
+        const {_id,name,price,description,quantity,category,bestseller,createBy,productPic} = product;
+
+        res.render("product/productDetail",{
+            _id,
+            name,
+            price,
+            description,
+            quantity,
+            category,
+            bestseller,
+            createBy,
+            productPic
+        })
+
+    })
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
+
+
+})
+
+//router to delete
 router.delete("/delete/:id",(req,res)=>{
     
     productModel.deleteOne({_id:req.params.id})
     .then(()=>{
-        res.redirect("/product/list");
+        res.redirect("/product/productDashboard");
     })
     .catch(err=>console.log(`Error happened when updating data from the database :${err}`));
 
 });
-
-
-
-
-
-//Route to direct user to edit task form
-
-
-
-//Route to update user data after they submit the form
-
-
-//router to delete user
 
 
 module.exports=router;

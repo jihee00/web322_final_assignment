@@ -1,10 +1,12 @@
 /*********************GENERAL ROUTES***************************/
 const express = require('express');
 const router = express.Router();
-const categoryModel = require("../model/category");
-const productModel = require("../model/Product");
 
-const isAuthenticated = require("../middleware/auth");
+const categoryModel = require("../model/Category");
+const productModel = require("../model/Product");
+const orderModel = require("../model/Order");
+
+const isAuthenticated = require("../middleware/authentication");
 const dashBoardLoader = require("../middleware/authorization");
 
 /*GENERAL ROUTES*/
@@ -12,13 +14,13 @@ const dashBoardLoader = require("../middleware/authorization");
 router.get("/",(req,res)=>{
 
     //pull from the database , get the results that was returned and then inject that results into the list
-    productModel.find()
-    .then((product)=>{
+    productModel.find({ bestseller: true })
+    .then((products)=>{
     
     //Filter out the information that you want from the array of documents that was returned into a new array
     //Array 300 documents meaning that the array has 300 elements 
     
-        const bestProduct = product.map(product=>{
+        const filteredProduct = products.map(product=>{
     
             return {
                         id: product._id,
@@ -31,21 +33,18 @@ router.get("/",(req,res)=>{
                         createBy : product.createBy,
                         productPic : product.productPic
                     }
-            });
+        });
 
-            res.render("general/home",{
-                title:"Home",
-                bestsellers: bestProduct,
-                categories: categoryModel.getAllCategories()
+        res.render("general/home",{
+            title:"Home",
+            categories: categoryModel.getAllCategories(),
+            bestsellers: filteredProduct
+        });
     
-        })
-        .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
-
     })
+    .catch(err=>console.log(`Error happened when pulling from the database :${err}`));
     
 });
 
-// Handle dashboard only if authenticated
-router.get("/userDashboard",isAuthenticated,dashBoardLoader);
 
 module.exports = router;

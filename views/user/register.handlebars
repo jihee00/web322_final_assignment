@@ -6,14 +6,14 @@
     <form action="/user/register" method="POST">
 
         <label for="firstName">Your first Name</label>
-        <input class="j-input j-border" type="text" id="firstName" name="firstName" value="{{firstnameValue}}"> <br>
+        <input class="j-input j-border" type="text" id="firstName" name="firstName" value="{{firstNameValue}}"> <br>
         <!-- Will only show if the errors array exists-->
                     {{#each errorfirstName}}
                     <div>{{this}}</div>
                     {{/each}}
 
         <label for="lastName">Your last Name</label>
-        <input class="j-input j-border" type="text" id="lastName" name="lastName" value="{{lastnameValue}}"> <br>
+        <input class="j-input j-border" type="text" id="lastName" name="lastName" value="{{lastNameValue}}"> <br>
         <!-- Will only show if the errors array exists-->
                     {{#each errorlastName}}
                     <div>{{this}}</div>

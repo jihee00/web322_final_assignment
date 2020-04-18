@@ -2,8 +2,9 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const isAuthenticated = require("../middleware/auth");
-const dashBoardLoader = require("../middleware/authorization");
+
+const isAuthenticated = require("../middleware/authentication");
+//const dashBoardLoader = require("../middleware/authorization");
 
 const userModel = require("../model/User");
 
@@ -11,8 +12,7 @@ const userModel = require("../model/User");
 router.get("/register",(req,res)=>{
         
     res.render("user/register",{
-            title : "Customer Registration",
-            headingInfo:"Create account"
+            title : "Customer Registration"
     })
 });
 
@@ -89,7 +89,6 @@ router.post("/register",(req,res)=>{
         {
                 res.render("user/register",{
                 title: "Customer Registration",
-                headingInfo:"Create account",
                 errorFirstName: errorFirstName,
                 errorLastName: errorLastName,
                 errorEmail: errorEmail,
@@ -116,7 +115,7 @@ router.post("/register",(req,res)=>{
 
                 const user = new userModel(newUser);
                 user.save()
-                .then((user)=>{
+                .then(()=>{
                         const sgMail = require('@sendgrid/mail');
                         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
@@ -156,8 +155,7 @@ router.post("/register",(req,res)=>{
 router.get("/login",(req,res)=>{
         
     res.render("user/login",{
-            title : "Login Page",
-            headingInfo:"Sign-in"
+            title : "Login Page"
     })
 });
 
@@ -186,7 +184,6 @@ router.post("/login",(req,res)=>{
     {
             res.render("user/login",{
                     title : "Login Page",
-                    headingInfo:"Sign-in",
                     errorEmail: errorEmail,
                     errorPassword: errorPassword,
                     emailValue: req.body.email,
@@ -196,11 +193,11 @@ router.post("/login",(req,res)=>{
 
     else 
     {
-        //Check to see if the user's email exist in the database
-        const errors = [];
-
         userModel.findOne({email:req.body.email})
         .then(user=>{
+
+                //Check to see if the user's email exist in the database
+                const errors = [];
         
                 //there was no matching email
                 if(user==null)
@@ -208,7 +205,6 @@ router.post("/login",(req,res)=>{
                         errors.push("Sorr your email was not found in our database");
                         res.render("user/login",{
                         title : "Login Page",
-                        headingInfo:"Sign-in",
                         errors
                         })
                 }
@@ -219,7 +215,7 @@ router.post("/login",(req,res)=>{
                         .then((isMatched)=>{
 
                                 //password match
-                                if(isMatched==true)
+                                if(isMatched)
                                 {
                                         req.session.userInfo = user;
                                         res.redirect("/user/userDashboard")
@@ -230,8 +226,6 @@ router.post("/login",(req,res)=>{
                                 {
                                         errors.push("Sorry your password was wrong!");
                                         res.render("user/login",{
-                                        title : "Login Page",
-                                        headingInfo:"Sign-in",
                                         errors
                                         })
                                 }
@@ -246,10 +240,7 @@ router.post("/login",(req,res)=>{
 
 });
 
-router.get("/userDashboard",isAuthenticated, dashBoardLoader);
-//router.get("/adminDashboard",isAuthenticated, dashBoardLoader);
-
-router.get("/logout",(req,res)=>{
+router.get("/logout",isAuthenticated,(req,res)=>{
 
         req.session.destroy();
         res.redirect("/user/login")
