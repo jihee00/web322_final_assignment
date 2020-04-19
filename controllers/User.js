@@ -241,11 +241,12 @@ router.post("/login",(req,res)=>{
 
 router.get("/logout",isAuthenticated,(req,res)=>{
 
+        cartModel.deleteMany({userid: req.session.userInfo._id})
+        .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));
+
         req.session.destroy();
         res.redirect("/user/login");
 
-        cartModel.deleteMany({userid: req.session.userInfo._id})
-        .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));
 })
 
 module.exports=router;
