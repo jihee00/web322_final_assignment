@@ -58,6 +58,8 @@ const cartSchema = new Schema({
     For every Schema you create(Create a schema per collection), you must also create a model object. 
     The model will allow you to perform CRUD operations on a given collection!!! 
   */
+   /*
+  */
 
  const cartModel = mongoose.model('cart', cartSchema);
 
