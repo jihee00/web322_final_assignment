@@ -1,6 +1,7 @@
 <div class="j-container j-padding-32">
     <h3 class="j-border-bottom j-border-light-grey j-padding-head">Admin Dashboard</h3>
     <h2>Welcome {{user.firstName}} {{user.lastName}}</h2>
+    <a href="/user/logout">logout</a>
 </div>
 
 <section id="adminDashboard">
@@ -52,14 +53,14 @@
                         </td>
                         
                         <td>
-                            <img src="/upload/{{this.productPic}}" width="30px" height="30px">
+                            <img src="/img/{{this.productPic}}" width="30px" height="30px">
                         </td>
                         <td>
                             <span>{{this.quantity}}</span>
                         </td>
                         <td>
-                                <a class="btn btn-danger btn-lg" href="/products/edit/{{this.id}}" class="edit-delete-button">Edit</a>
-                                <a class="btn btn-danger btn-lg" href="/products/delete/{{this.id}}?method=DELETE" class="edit-delete-button">Delete</a>
+                                <a class="btn btn-danger btn-lg" href="/product/edit/{{this.id}}" class="edit-delete-button">Edit</a>
+                                <a class="btn btn-danger btn-lg" href="/product/delete/{{this.id}}?method=DELETE" class="edit-delete-button">Delete</a>
                         </td> 
                         </tr>
 
@@ -71,7 +72,7 @@
                         {{/each}}
             </tbody>
             </table><br>
-            <a href="/products/add" class="btn btn-danger btn-lg" role="button">Add Product</a>
+            <a href="/product/add" class="btn btn-danger btn-lg" role="button">Add Product</a>
     </div>
     
 </section>

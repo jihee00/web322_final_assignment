@@ -2,11 +2,11 @@
 const express = require('express');
 const router = express.Router();
 
-const categoryModel = require("../model/Category");
-const productModel = require("../model/Product");
-const cartModel = require("../model/Cart");
+const categoryModel = require("../model/category");
+const productModel = require("../model/product");
+const cartModel = require("../model/cart");
 
-const isAuthenticated = require("../middleware/authentication");
+const isAuthenticated = require("../middleware/auth");
 const dashBoardLoader = require("../middleware/authorization");
 
 /*GENERAL ROUTES*/

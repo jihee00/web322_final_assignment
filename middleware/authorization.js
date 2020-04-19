@@ -1,8 +1,9 @@
-const productModel = require("../model/Product");
+const productModel = require("../model/product");
 const dashBoardLoader = (req,res)=>{
 
     if(req.session.userInfo.type=="Admin")
     {
+
         productModel.find()
         .then((product)=>{
             //Filter out the information that you want from the array of documents that was returned into

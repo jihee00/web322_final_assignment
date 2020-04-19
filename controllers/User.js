@@ -3,11 +3,11 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 
-const isAuthenticated = require("../middleware/authentication");
+const isAuthenticated = require("../middleware/auth");
 const dashBoardLoader = require("../middleware/authorization");
 
-const userModel = require("../model/User");
-const cartModel = require("../model/Cart");
+const userModel = require("../model/user");
+const cartModel = require("../model/cart");
 
 //Route to direct use to Registration form
 router.get("/register",(req,res)=>{
@@ -217,7 +217,7 @@ router.post("/login",(req,res)=>{
                                 if(isMatched)
                                 {
                                         req.session.userInfo = user;
-                                        res.redirect("/product/list")
+                                        res.redirect("/dashboard")
                                 }
 
                                 //no match

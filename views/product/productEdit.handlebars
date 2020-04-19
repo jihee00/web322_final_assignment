@@ -12,22 +12,22 @@
             <input type="text" name="price" id="price" value="{{price}}"> <br><br>
 
             <label>Description</label> <br>
-            <textarea id="description" name="description" value="{{description}}"></textarea><br><br>
+            <input type="text" name="description" value="{{description}}"><br><br>
 
             <label>Product quantity</label>
             <input type="text" name="quantity" id="quantity" value="{{quantity}}"> <br><br>
 
 
-            <img src="/upload/{{image}}" alt={{image}}>
+            <img src="/img/{{productPic}}" alt={{productPic}}>
             <label>Image Update</label>
             <input type="file" name="productPic" id="productPic"> <br><br>
 
             <label>Category</label><br>
             <select name="category">
-                <option value="Shop Valentine's Day gifts" {{#if_eq category value="Shop Valentine's Day gifts"}} selected {{/if_eq}}>Shop Valentine's Day gifts</option>
-                <option value="Cleaning supplies" {{#if_eq category value="Cleaning supplies"}} selected {{/if_eq}}>Cleaning supplies</option>
-                <option value="Shop deals in Tools" {{#if_eq category value="Shop deals in Tools"}} selected {{/if_eq}}>Shop deals in Tools</option>
-                <option value="Smart home" {{#if_eq category value="Smart home"}} selected {{/if_eq}}>Smart home</option>
+                <option value="Shop Valentine's Day gifts" value="Shop Valentine's Day gifts">Shop Valentine's Day gifts</option>
+                <option value="Cleaning supplies" value="Cleaning supplies">Cleaning supplies</option>
+                <option value="Shop deals in Tools" value="Shop deals in Tools">Shop deals in Tools</option>
+                <option value="Smart home" value="Smart home">Smart home</option>
             </select>
             <br><br>
 
@@ -36,7 +36,7 @@
                     <option value="true">Yes</option>
                     <option selected value="false">No</option>
             </select>
-
+            <br><br>
             <input type="submit" value="Update product">
 
         </form>

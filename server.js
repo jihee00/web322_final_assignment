@@ -9,9 +9,9 @@ const session = require('express-session');
 require('dotenv').config({path:"./config/keys.env"});
 
 //import your router objects
-const userRoutes = require("./controllers/User");
-const productRoutes = require("./controllers/Product");
-const generalRoutes = require("./controllers/General");
+const userRoutes = require("./controllers/user");
+const productRoutes = require("./controllers/product");
+const generalRoutes = require("./controllers/general");
 
 //creation of app object
 const app = express();

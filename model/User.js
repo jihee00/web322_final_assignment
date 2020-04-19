@@ -53,7 +53,7 @@ userSchema.pre("save", function(next)
 {
 
     //salt random generated characters or strings
-    bcrypt.genSalt(10)
+    bcrypt.genSalt(12)
     .then((salt)=>{
         
         bcrypt.hash(this.password,salt)
@@ -68,6 +68,6 @@ userSchema.pre("save", function(next)
 
 })
 
-const userModel = mongoose.model('User', userSchema);
+const userModel = mongoose.model('user', userSchema);
 
 module.exports = userModel;

@@ -65,7 +65,7 @@ const productSchema = new Schema({
     The model will allow you to perform CRUD operations on a given collection!!! 
   */
 
- const productModel = mongoose.model('Product', productSchema);
+ const productModel = mongoose.model('product', productSchema);
 
  module.exports = productModel; 
 

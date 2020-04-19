@@ -2,9 +2,9 @@
 const express = require('express');
 const router = express.Router();
 const path = require("path");
-const isAuthenticated = require("../middleware/authentication");
+const isAuthenticated = require("../middleware/auth");
 
-const productModel = require("../model/Product");
+const productModel = require("../model/product");
 
 router.get("/list",(req,res)=>
 {
@@ -144,7 +144,7 @@ router.post("/add",isAuthenticated,(req,res)=>
         // rename image
         req.files.productPic.name = `pro_pic_${product._id}${path.parse(req.files.productPic.name).ext}`;
         // move to my folder
-        req.files.productPicPic.mv(`./public/upload/${req.files.productPic.name}`)
+        req.files.productPic.mv(`./public/img/${req.files.productPic.name}`)
 
         .then(()=>{
 

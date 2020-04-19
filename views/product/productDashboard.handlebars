@@ -12,14 +12,14 @@
                         <option name="Smart home" value="Smart home">Smart home</option>
                     </select>
                         <input type="submit" value="Search">
-            </form> <br><br>
+                    </form>
 
                 <div class="j-row-padding">
                     {{#each data}}
                             <div class="j-col l4 m6 j-margin-bottom">
                                 <div class="j-display-container">
                                     <div class="j-display-topleft j-black j-padding">{{this.category}}</div>
-                                    <a href="/product/detail/{{this.id}}"> <img src="/upload/{{this.productPic}}" alt="{{this.name}}" style="width:60%"></a>
+                                    <a href="/product/detail/{{this.id}}"> <img src="/img/{{this.productPic}}" alt="{{this.name}}"></a>
                                     <div>{{this.name}}</div>
                                     <div>{{this.price}}</div>
                                 </div>
