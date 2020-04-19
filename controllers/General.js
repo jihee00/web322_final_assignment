@@ -218,7 +218,7 @@ router.post("/checkout", isAuthenticated,(req,res) => {
         html +="<b>Order Total: $" + total_amount + "</b><br>";
 
         const sgMail = require('@sendgrid/mail');
-        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
         const msg = {
             to: req.session.userInfo.email,
