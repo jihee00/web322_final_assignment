@@ -6,8 +6,8 @@ const bcrypt = require('bcryptjs');
 const isAuthenticated = require("../middleware/auth");
 const dashBoardLoader = require("../middleware/authorization");
 
-const userModel = require("../model/user");
-const cartModel = require("../model/cart");
+const userModel = require("../model/User");
+const cartModel = require("../model/Cart");
 
 //Route to direct use to Registration form
 router.get("/register",(req,res)=>{

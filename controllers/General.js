@@ -2,9 +2,9 @@
 const express = require('express');
 const router = express.Router();
 
-const categoryModel = require("../model/category");
+const categoryModel = require("../model/Category");
 const productModel = require("../model/product");
-const cartModel = require("../model/cart");
+const cartModel = require("../model/Cart");
 
 const isAuthenticated = require("../middleware/auth");
 const dashBoardLoader = require("../middleware/authorization");
