@@ -123,7 +123,7 @@ router.put("/cart/:id", isAuthenticated, (req,res) => {
                 products: [],
                 products_qty: [],
                 userid: req.session.userInfo._id,
-                username : req.session.userInfo.name,
+                username : req.session.userInfo.firstName,
                 useremail: req.session.userInfo.email,
                 total_amount: product.price.toFixed(2),
                 total_items: Number(req.body.quantity) ,
@@ -211,8 +211,8 @@ router.post("/checkout", isAuthenticated,(req,res) => {
         let html = "<h3>Your Order Summary</h3><br><br>";
         products.forEach((item,i)=> {
             html += "Product Name: " + item.name + "<br>";
-            html +="Quantity: " + products_qty[i] + "<br>";
-            html +="Total Price: $" + item.price + "<br><br>";
+            html +=" Quantity: " + products_qty[i] + "<br>";
+            html +=" Total Price: $" + item.price + "<br><br>";
         });
         html +="<b>Total Items: " + total_items + "</b><br>";
         html +="<b>Order Total: $" + total_amount + "</b><br>";
@@ -238,7 +238,7 @@ router.post("/checkout", isAuthenticated,(req,res) => {
                 })
                 .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));;
 
-                res.render("user/checkout", {success: "Thank you for shopping with us. An email has been sent with order details"});
+                res.render("user/checkout", {success: "Thank you, An email has been sent about your order."});
         })
         .catch(err => {
             console.log(`Error on sending email: ${err}`);

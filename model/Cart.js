@@ -4,33 +4,46 @@ const Schema = mongoose.Schema;
 //This indicates the shape of the documents that will be entering the database
 const cartSchema = new Schema({
    
-    name:
-    {
+    userid: {
       type:String,
-      required:true
+      required: true
     },
 
-    price:
-    {
-      type:Number,
-      required:true
-    },
-
-    description: 
+    username:
     {
         type:String,
         required:true
     },
 
-    quantity:
+    useremail:
     {
-      type:Number,
-      required:true
+        type:String,
+        required:true
     },
 
-    productPic:
+    products:
     {
-      type: String
+        type:Array,
+        required:true
+    },
+
+    products_qty:
+    {
+        type: Array,
+        required: true,
+        default: 1
+    },
+
+    total_amount:
+    {
+        type:Number,
+        default:0.00,
+    },
+
+    total_items:
+    {
+        type:Number,
+        default: 0
     },
 
     dateCreated:

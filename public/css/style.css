@@ -127,7 +127,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Segoe UI",Arial,sans-serif;font-weight:400;margin
 
 /* Bestsellers */
 .bestsellers {padding-top: 20px;display: flex;flex-direction:row;flex-wrap: wrap;justify-content: space-evenly;}
-.bestsellers-box, .products-box {padding: 30px;margin: 10px;background-color: #ffbac4;}
+.bestsellers-box, .products-box {padding: 30px;margin: 10px;background-color:#e3e3e3}
 .bestsellers p , .products-class p{text-align: center;font-weight: 600;}
 .bestsellers h6, .products-class h6{width: 300px;font-weight: 300;}
 

@@ -1,39 +1,31 @@
 <div class="j-container j-padding-32" id="productAdd">
     <h3 class="j-border-bottom j-border-light-grey j-padding-head">Product Detail</h3>
-
         <section id="detail">
             <div>
                 <div>
                         <div>
+                            <div>
+                                <a href="{{this.link}}"><img src="/img/{{this.productPic}}" style="max-width:100%;height:auto;"></a>
+                            </div>
                             <h2>{{this.name}}</h2>
                             <p>Category: {{this.category}}</h2>
                             <p>Description: {{this.description}}</p>
                             <p id="price">Price: ${{this.price}}</p>
-                            <p id="quantity">In Stock: {{this.quantity}}</p>
-                            <div>
+                            <p id="quantity">Stock: {{this.quantity}}</p>
+                            <div id="addCart">
                                 <form method="POST" action="/cart/{{_id}}?method=PUT">
                                     <select name="quantity">
-                                            <label class="floatLabel">Quantity</label><br>
+                                            <label>Quantity</label><br>
                                             <option selected value=1>1</option>
                                             <option value=2>2</option>
                                             <option value=3>3</option>
                                             <option value=4>4</option>
                                             <option value=5>5</option>
-                                            <option value=6>6</option>
-                                            <option value=7>7</option>
-                                            <option value=8>8</option>
-                                            <option value=9>9</option>
-                                            <option value=10>10</option>
-                                    </select><br>
-                                    <p>
-                                        <input type="submit" value="Add to Cart">
-                                    </p>
+                                    </select><input type="submit" value="Add to Cart">
                                 </form>
                             </div>
                         </div>
-                        <div>
-                                <a href="{{this.link}}"><img src="/img/{{this.productPic}}" style="max-width:100%;height:auto;"></a>
-                        </div>
+                        
                     </div>
             </div>
             
