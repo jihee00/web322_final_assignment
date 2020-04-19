@@ -245,7 +245,7 @@ router.get("/logout",isAuthenticated,(req,res)=>{
         .catch(err=>console.log(`Error happened when deleting data from the database :${err}`));
 
         req.session.destroy();
-        res.redirect("/user/login");
+        res.redirect("/User/login");
 
 })
 

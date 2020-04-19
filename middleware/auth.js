@@ -7,7 +7,7 @@ const isLoggedIn = (req,res,next)=>{
     
     else
     {
-        res.redirect("/user/login")
+        res.redirect("/User/login")
     }
 
 }

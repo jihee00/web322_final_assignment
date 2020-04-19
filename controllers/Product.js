@@ -153,7 +153,7 @@ router.post("/add",isAuthenticated,(req,res)=>
             })
 
             .then(()=>{
-                res.redirect(`/product/list`)
+                res.redirect(`/Product/list`)
             })
             .catch(err=>console.log(`Update to database failed :${err}`));
         })

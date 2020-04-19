@@ -2,7 +2,7 @@
     <h3 class="j-border-bottom j-border-light-grey j-padding-head">Product Dashboard</h3>
         
         <section>
-            <form method="POST" action="/product/list" >
+            <form method="POST" action="/Product/list" >
                 <label>Search By</label>
                     <select name="category">
                         <option selected value="all">All</option>
@@ -19,7 +19,7 @@
                             <div class="j-col l4 m6 j-margin-bottom">
                                 <div class="j-display-container">
                                     <div class="j-display-topleft j-black j-padding">{{this.category}}</div>
-                                    <a href="/product/detail/{{this.id}}"> <img src="/img/{{this.productPic}}" alt="{{this.name}}"></a>
+                                    <a href="/Product/detail/{{this.id}}"> <img src="/img/{{this.productPic}}" alt="{{this.name}}"></a>
                                     <div>{{this.name}}</div>
                                     <div>{{this.price}}</div>
                                 </div>

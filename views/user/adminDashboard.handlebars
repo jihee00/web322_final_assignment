@@ -1,7 +1,7 @@
 <div class="j-container j-padding-32">
     <h3 class="j-border-bottom j-border-light-grey j-padding-head">Admin Dashboard</h3>
     <h2>Welcome {{user.firstName}} {{user.lastName}}</h2>
-    <a href="/user/logout">logout</a>
+    <a href="/User/logout">logout</a>
 </div>
 
 <section id="adminDashboard">
@@ -59,8 +59,8 @@
                             <span>{{this.quantity}}</span>
                         </td>
                         <td>
-                                <a class="btn btn-danger btn-lg" href="/product/edit/{{this.id}}" class="edit-delete-button">Edit</a>
-                                <a class="btn btn-danger btn-lg" href="/product/delete/{{this.id}}?method=DELETE" class="edit-delete-button">Delete</a>
+                                <a class="btn btn-danger btn-lg" href="/Product/edit/{{this.id}}" class="edit-delete-button">Edit</a>
+                                <a class="btn btn-danger btn-lg" href="/Product/delete/{{this.id}}?method=DELETE" class="edit-delete-button">Delete</a>
                         </td> 
                         </tr>
 
@@ -72,7 +72,7 @@
                         {{/each}}
             </tbody>
             </table><br>
-            <a href="/product/add" class="btn btn-danger btn-lg" role="button">Add Product</a>
+            <a href="/Product/add" class="btn btn-danger btn-lg" role="button">Add Product</a>
     </div>
     
 </section>

@@ -3,7 +3,7 @@
     <!--This will only show if the successMessage was injected into the view -->
     <div>{{successMessage}}</div>
         <section>
-            <form action="/user/login" method="POST">
+            <form action="/User/login" method="POST">
 
                 <label for="email">Email</label><br><br>
                 <input class="j-input j-border" type="text" id="email" name="email" value="{{emailValue}}"> <br>
@@ -24,7 +24,7 @@
                     {{/each}}
                 <input class="j-input j-section j-border" type="submit" value="Login">
             </form>
-            <form action="/user/register" method="get" target="_blank">
+            <form action="/User/register" method="get" target="_blank">
                 <input class="j-input j-section j-border" type="submit" value="Create your Amazon account">
             </form>
         </section>

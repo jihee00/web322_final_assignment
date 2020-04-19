@@ -9,9 +9,9 @@ const session = require('express-session');
 require('dotenv').config({path:"./config/keys.env"});
 
 //import your router objects
-const userRoutes = require("./controllers/user");
-const productRoutes = require("./controllers/product");
-const generalRoutes = require("./controllers/general");
+const userRoutes = require("./controllers/User");
+const productRoutes = require("./controllers/Product");
+const generalRoutes = require("./controllers/General");
 
 //creation of app object
 const app = express();
@@ -62,8 +62,8 @@ app.use((req,res,next)=>{
 
 //MAPs EXPRESS TO ALL OUR  ROUTER OBJECTS
 app.use("/",generalRoutes);
-app.use("/user",userRoutes);
-app.use("/product",productRoutes);
+app.use("/User",userRoutes);
+app.use("/Product",productRoutes);
 app.use("/",(req,res)=>{
     res.render("general/404");
 });
