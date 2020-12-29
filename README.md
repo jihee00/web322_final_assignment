@@ -4,7 +4,6 @@
 - Authentication Module
 - Inventory Clerk Module
 - Search Module
-- Product Description Page
 - Shopping Cart Module
 
 # Technologies⚙️
