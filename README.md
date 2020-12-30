@@ -1,12 +1,13 @@
-# https://web322-finalassignment55.herokuapp.com
-> This project has a basic online shop function.
+# Online Shop App
+> https://web322-finalassignment55.herokuapp.com
+This project has basic online shop functions.
 - User Registration Module
 - Authentication Module
 - Inventory Clerk Module
 - Search Module
 - Shopping Cart Module
 
-# Technologies⚙️
+# Tech/framework used ⚙️
 - Node.js
 - Express
 - MongoDB
